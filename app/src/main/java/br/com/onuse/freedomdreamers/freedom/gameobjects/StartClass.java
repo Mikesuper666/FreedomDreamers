@@ -8,6 +8,7 @@ import android.view.View;
 
 import br.com.onuse.freedomdreamers.freedom.hudobjects.ViewNucleo;
 
+
 public class StartClass extends Activity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class StartClass extends Activity {
             int height = displaymetrics.heightPixels;
             int width = displaymetrics.widthPixels;
             // Cria uma nova view e seta os tamanhos por heigth e width
-            //setContentView(new ViewNucleo(this, width, height));
+            setContentView(new ViewNucleo(this, width, height));
             View decorView = getWindow().getDecorView();
             // Definir sinalizadores do sistema para permitir a barra de navegação em tela inteira e transparente não aderente
             int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
