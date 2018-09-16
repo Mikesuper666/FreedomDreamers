@@ -19,7 +19,7 @@ public class NucleoManager {
     private static GameManager gm;
     private Assets assets;
     public static Context context;
-    public static ScreenState state;
+    public static EstadoTela state;
     public static boolean allowTouch = true;
     public NucleoManager(Context context, int largura, int altura){
         this.context = context;
@@ -35,7 +35,7 @@ public class NucleoManager {
         // Inicia HUDmanager, background manager, and SE manager
         // Inicia o gerenciador de HUD, o gerenciador de background e o gerente de SE
         // carrega sound effects
-        state = ScreenState.TITLE;
+        state = EstadoTela.TITULO;
         hud = new HUDManager();
         background = new Background();
         se = new SEManager();

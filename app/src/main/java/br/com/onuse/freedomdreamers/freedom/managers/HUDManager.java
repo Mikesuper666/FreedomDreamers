@@ -36,7 +36,7 @@ public class HUDManager {
         back = Assets.getBitmapFromMemory("button_back");
         info = Assets.getBitmapFromMemory("button_info");
         start = Assets.getBitmapFromMemory("button_start");
-        onStateChange(ScreenState.TITLE, ScreenState.TITLE);
+        onStateChange(EstadoTela.TITULO, EstadoTela.TITULO);
     }
 
     /**
@@ -65,12 +65,12 @@ public class HUDManager {
     }
 
     /**
-     * Chamado quando o {@link ScreenState} muda.
+     * Chamado quando o {@link EstadoTela} muda.
      * Cria todos os botões
-     * @param oldState estado anterior da tela {@link ScreenState}
-     * @param novoEstado novo estado da tela {@link ScreenState}
+     * @param oldState estado anterior da tela {@link EstadoTela}
+     * @param novoEstado novo estado da tela {@link EstadoTela}
      */
-    public static void onStateChange(ScreenState oldState, ScreenState novoEstado){
+    public static void onStateChange(EstadoTela oldState, EstadoTela novoEstado){
         // Limpa todos os botões não importa o que
         //buttonManager.clearButtons();
        // entityManager.clear();
@@ -78,7 +78,7 @@ public class HUDManager {
         //Dependendo do estado de tela de cada estado
         switch (novoEstado){
 
-            case TITLE:
+            case TITULO:
                 HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 8, 11, Color.rgb(0,191,255), true);
                 HUDManager.displayTypingText("Choose a character...", largura / 3, altura / 3, 10, 11, Color.rgb(0,191,255), false);
 
@@ -100,10 +100,10 @@ public class HUDManager {
                 HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                 break;
 
-            case BATTLE:
+            case BATALHA:
                 break;
 
-            case INVENTORY:
+            case INVENTARIO:
                 // When the player enters the inventory screen (0)
                 HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                 break;
@@ -124,7 +124,7 @@ public class HUDManager {
         switch(NucleoManager.state){
 
             // Tela titulo do jogo
-            case TITLE:
+            case TITULO:
                 drawText("texto",canvas, largura / 4, altura / 4, paint, 11, Color.RED);
                 break;
 
@@ -222,7 +222,7 @@ public class HUDManager {
                 }*/
                 break;
 
-            case BATTLE:
+            case BATALHA:
 /*
                 Bitmap hpIcon = Assets.getBitmapFromMemory("icons_hp");
                 Bitmap mpIcon = Assets.getBitmapFromMemory("icons_mana");
@@ -279,7 +279,7 @@ public class HUDManager {
                 }*/
                 break;
 
-            case INVENTORY:
+            case INVENTARIO:
                 /*Bitmap invMenu = Assets.getBitmapFromMemory("menu_inventory_items");
                 Bitmap invSelected = Assets.getBitmapFromMemory("menu_selected_item");
 

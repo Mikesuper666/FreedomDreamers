@@ -27,7 +27,7 @@ public class Background {
         animate.setSpeed(450);
         animate.play();
         animate.update(System.currentTimeMillis());
-        onStateChange(ScreenState.TITLE, ScreenState.TITLE);
+        onStateChange(EstadoTela.TITULO, EstadoTela.TITULO);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Background {
         switch(NucleoManager.state){
             // Todos os movimentos para coisas em segundo plano são tratados aqui.
             case CHAR_SELECT:
-            case TITLE:
+            case TITULO:
             case LOAD:
             case INFO:
                 if (xOff < NucleoManager.largura + clouds.getWidth()){
@@ -51,15 +51,15 @@ public class Background {
     }
 
     /**
-     * Chamado quando {@link ScreenState} muda.
-     * @param velhoEstado estado da tela anterior {@link ScreenState}
-     * @param novoEstado estado da tela atual {@link ScreenState}
+     * Chamado quando {@link EstadoTela} muda.
+     * @param velhoEstado estado da tela anterior {@link EstadoTela}
+     * @param novoEstado estado da tela atual {@link EstadoTela}
      */
-    public static void onStateChange(ScreenState velhoEstado, ScreenState novoEstado){
+    public static void onStateChange(EstadoTela velhoEstado, EstadoTela novoEstado){
         // Não importa o que tiver na tela, limpe todos os quadros em segundo plano e recarregue.
         background.clear();
         switch (novoEstado){
-            case TITLE:
+            case TITULO:
                 background.add(Assets.getBitmapFromMemory("intro"));
 
                 break;
@@ -72,11 +72,11 @@ public class Background {
                 break;
             case STAGE_TRANSITION:
                 break;
-            case BATTLE:
+            case BATALHA:
                 break;
             case SHOP:
                 break;
-            case INVENTORY:
+            case INVENTARIO:
                 break;
             default:
                 break;
@@ -98,7 +98,7 @@ public class Background {
         }
         switch(NucleoManager.state){
             // Todos os objetos em movimento no fundo são desenhados aqui.
-            case TITLE:
+            case TITULO:
                 canvas.drawBitmap(clouds, NucleoManager.largura - (int) xOff, NucleoManager.altura / 10, paint);
                 break;
             case INFO:
