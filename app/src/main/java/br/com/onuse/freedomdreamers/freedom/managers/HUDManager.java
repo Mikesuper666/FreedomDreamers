@@ -29,11 +29,11 @@ public class HUDManager {
     public HUDManager(){
         this.largura = CoreManager.largura;
         this.altura = CoreManager.altura;
-        // Init new button manager
+        //inicia novo botaoManager
         buttonManager = new ButtonManager();
         animatedTextManager = new AnimatedTextManager();
         entityManager = new EntityManager();
-        // Load all button bitmaps needed
+        // Carrega todos bitmaps de botões necessários
         play = Assets.getBitmapFromMemory("button_play");
         back = Assets.getBitmapFromMemory("button_back");
         info = Assets.getBitmapFromMemory("button_info");
@@ -42,24 +42,24 @@ public class HUDManager {
     }
 
     /**
-     * Called when the game ticks.
+     * Chamado quando o jogo ticks
      */
     public void tick(){
-        // Tick button manager + faded text
+        //Tick botãoManager + faded text
        // entityManager.tick();
        // buttonManager.tick();
         animatedTextManager.tick();
     }
 
     /**
-     * Called when the user lets go of the screen.
-     * @param e The {@link MotionEvent} to listen to
+     * Chamado quando o usuário interage com a tela
+     * @param e {@link MotionEvent} listerner para
      */
     public void touchEvent(MotionEvent e){
        // buttonManager.checkButtons(e);
     }
     /**
-     * Called when the user initially taps the screen.
+     * Chamado uando o usuário inicialmente toca a tela
      * @param e The {@link MotionEvent} to listen to
      */
     public void preTouchEvent(MotionEvent e){
@@ -67,13 +67,13 @@ public class HUDManager {
     }
 
     /**
-     * Called when the {@link ScreenState} changes.
-     * Creates all buttons.
-     * @param oldState The previous {@link ScreenState}
-     * @param novoEstado The new {@link ScreenState}
+     * Chamado quando o {@link ScreenState} muda.
+     * Cria todos os botões
+     * @param oldState estado anterior da tela {@link ScreenState}
+     * @param novoEstado novo estado da tela {@link ScreenState}
      */
     public static void onStateChange(ScreenState oldState, ScreenState novoEstado){
-        // Clear buttons no matter what
+        // Limpa todos os botões não importa o que
         //buttonManager.clearButtons();
        // entityManager.clear();
         animatedTextManager.clear();
@@ -81,11 +81,10 @@ public class HUDManager {
         switch (novoEstado){
 
             case TITLE:
-                // Create play and info buttons
                 HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 8, 11, Color.rgb(0,191,255), true);
                 HUDManager.displayTypingText("Choose a character...", largura / 3, altura / 3, 10, 11, Color.rgb(0,191,255), false);
 
-                // Reset info state
+                // Reseta o info state
                 infoState = 0;
                 break;
 
@@ -117,10 +116,10 @@ public class HUDManager {
     }
 
     /**
-     * Called when the game renders.
-     * Renders all text and images.
-     * @param canvas The {@link Canvas} to draw on
-     * @param paint The {@link Paint} object to draw with
+     * Chamado quando o jogo renderiza
+     * Renderiza todos texto e imagens
+     * @param canvas {@link Canvas} objeto de painel para desenho
+     * @param paint {@link Paint} objeto de desenho
      */
     public void render(Canvas canvas, Paint paint){
         //Rebderiza todos os textos, HUDs, items, etc... depende do estado de tela.
@@ -128,7 +127,6 @@ public class HUDManager {
 
             // Tela titulo do jogo
             case TITLE:
-                // Title
                 drawText("texto",canvas, largura / 4, altura / 4, paint, 11, Color.RED);
                 break;
 
@@ -142,22 +140,22 @@ public class HUDManager {
                     case 0:
                         HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                         break;
-                    // Combat Screen
+                    // Tela de combate
                     case 1:
                         HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                         break;
-                    // Skills screen
+                    // Tela de hablidades
                     case 2:
                         HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                         break;
-                    // Items screen
+                    // Tela de items
                     case 3:
                         HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                         break;
                 }
                 break;
 
-            // Load screen
+            // Tela de carregamento
             case LOAD:
            /*     drawCenteredText("Continue?", canvas, width / 2, height / 4, paint, 25, Color.WHITE);
                 drawCenteredText("Stage " + GameManager.getStage(), canvas, width / 2, (int) (height * 0.83), paint, 20, Color.YELLOW);
@@ -177,16 +175,14 @@ public class HUDManager {
                 drawCenteredBitmap(portrait, canvas, paint, width / 2, height / 2);*/
                 break;
 
-
-            // Character Selection Screen
+            //Tela de seleção de personagens
             case CHAR_SELECT:
-                // Char select title
                 HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                 break;
 
-            // Stage Transition Screen
+            //Tela de transição de estágio
             case STAGE_TRANSITION:
-               /* // Stage transition title
+               /*
                 drawCenteredText("Stage " + GameManager.getStage(), canvas, width / 2, height / 4, paint, 25, Color.YELLOW);
                 String role = "";
                 Bitmap picture = null;
@@ -228,7 +224,6 @@ public class HUDManager {
                 }*/
                 break;
 
-            // Battle Screen
             case BATTLE:
 /*
                 Bitmap hpIcon = Assets.getBitmapFromMemory("icons_hp");
@@ -382,19 +377,19 @@ public class HUDManager {
     }
 
     /**
-     * Draws text, centered to the position given.
-     * @param text The text to draw
-     * @param canvas The {@link Canvas} to draw on
-     * @param x The x position of the text
-     * @param y The y position of the text
-     * @param paint The {@link Paint} object to draw with
-     * @param textSize The size of the text
-     * @param color The color of the text
+     * Desenha o texto, centralizado na posição passada
+     * @param text Texto para renderizar
+     * @param canvas {@link Canvas} objeto de painel
+     * @param x posição X do texto
+     * @param y posição Y do texto
+     * @param paint {@link Paint} objeto de pintura
+     * @param tamanhoTexto Tamanho de texto
+     * @param color A cor de texto
      */
-    public static void drawCenteredText(String text, Canvas canvas, int x, int y, Paint paint, int textSize, int color){
+    public static void drawCenteredText(String text, Canvas canvas, int x, int y, Paint paint, int tamanhoTexto, int color){
         float old = paint.getTextSize();
         double relation = Math.sqrt(canvas.getWidth() * canvas.getHeight()) / 250;
-        float scaledTextSize = (float) (textSize * relation);
+        float scaledTextSize = (float) (tamanhoTexto * relation);
         paint.setColor(color);
         paint.setTextSize(scaledTextSize);
         Rect bounds = new Rect();
@@ -407,19 +402,19 @@ public class HUDManager {
         paint.setColor(Color.WHITE);
     }
     /**
-     * Draws text, starting from the position given, from left to right.
-     * @param text The text to draw
-     * @param canvas The {@link Canvas} to draw on
-     * @param x The x position of the text
-     * @param y The y position of the text
-     * @param paint The {@link Paint} object to draw with
-     * @param textSize The size of the text
-     * @param color The color of the text
+     * Desenha o texto, começando da posição passada, de esquerda para a direita
+     * @param text Texto para ser renderizado
+     * @param canvas {@link Canvas} objeto de painel
+     * @param x posição X do texto
+     * @param y posição Y do texto
+     * @param paint {@link Paint} objeto de pintura
+     * @param tamanhoTexto Tamanho de texto
+     * @param color A cor de texto
      */
-    public static void drawText(String text, Canvas canvas, int x, int y, Paint paint, int textSize, int color){
+    public static void drawText(String text, Canvas canvas, int x, int y, Paint paint, int tamanhoTexto, int color){
         float old = paint.getTextSize();
         double relation = Math.sqrt(canvas.getWidth() * canvas.getHeight()) / 250;
-        float scaledTextSize = (float) (textSize * relation);
+        float scaledTextSize = (float) (tamanhoTexto * relation);
 
         paint.setColor(color);
         paint.setTextSize(scaledTextSize);
@@ -444,24 +439,24 @@ public class HUDManager {
     }
 
     /**
-     * Draws text, with a dark border.
-     * @param text The text to draw
-     * @param canvas The {@link Canvas} to draw on
-     * @param x The x position of the text
-     * @param y The y position of the text
-     * @param paint The {@link Paint} object to draw with
-     * @param textSize The size of the text
-     * @param color The color of the text
+     * Desenha o texto, com uma borda negra
+     * @param text Renderiza o texto passado
+     * @param canvas {@link Canvas} objeto de painel
+     * @param x posição X do texto
+     * @param y posição Y do texto
+     * @param paint {@link Paint} objeto de pintura
+     * @param tamanhoTexto Tamanho de texto
+     * @param color cor do texto
      */
-    public static void drawTextWithBorder(String text, Canvas canvas, int x, int y, Paint paint, int textSize, int color){
+    public static void drawTextWithBorder(String text, Canvas canvas, int x, int y, Paint paint, int tamanhoTexto, int color){
         paint.setColor(color);
         float old = paint.getTextSize();
         double relation = Math.sqrt(canvas.getWidth() * canvas.getHeight()) / 250;
-        float scaledTextSize = (float) (textSize * relation);
+        float scaledTextSize = (float) (tamanhoTexto * relation);
         paint.setTextSize(scaledTextSize);
         paint.setStyle(Paint.Style.FILL);
         paint.setShadowLayer(3, 0, 0, Color.BLACK);
-        // Draw normal text
+        // Desenha um texto normal
         canvas.drawText(text, x, y, paint);
         paint.setShadowLayer(0, 0, 0, Color.BLACK);
         paint.setTextSize(old);
@@ -469,20 +464,20 @@ public class HUDManager {
     }
 
     /**
-     * Draws text, centered to the position given, with a dark border.
-     * @param text The text to draw
-     * @param canvas The {@link Canvas} to draw on
-     * @param x The x position of the text
-     * @param y The y position of the text
-     * @param paint The {@link Paint} object to draw with
-     * @param textSize The size of the text
-     * @param color The color of the text
+     * Desenha o texto centralizado, com uma borda negra
+     * @param text Renderiza o texto passado
+     * @param canvas {@link Canvas} objeto de painel
+     * @param x posição X do texto
+     * @param y posição Y do texto
+     * @param paint {@link Paint} objeto de pintura
+     * @param tamanhoTexto Tamanho de texto
+     * @param color cor do texto
      */
-    public static void drawCenteredTextWithBorder(String text, Canvas canvas, int x, int y, Paint paint, int textSize, int color){
+    public static void drawCenteredTextWithBorder(String text, Canvas canvas, int x, int y, Paint paint, int tamanhoTexto, int color){
         paint.setColor(color);
         float old = paint.getTextSize();
         double relation = Math.sqrt(canvas.getWidth() * canvas.getHeight()) / 250;
-        float scaledTextSize = (float) (textSize * relation);
+        float scaledTextSize = (float) (tamanhoTexto * relation);
         paint.setTextSize(scaledTextSize);
         paint.setStyle(Paint.Style.FILL);
 
@@ -503,72 +498,72 @@ public class HUDManager {
     }
 
     /**
-     * Displays a message that fades in and out.
-     * @param message The message to draw
-     * @param x The x position of the message
-     * @param y The y position of the message
-     * @param ticks The time the message stays visible
-     * @param textSize The size of the message
-     * @param color The color of the message
+     * Mostra o texto  com esmaecimento de entrada e saida
+     * @param message a menssagem para mostrar
+     * @param x posição X da menssagem
+     * @param y posição Y da menssagem
+     * @param ticks Tempo que a menssagem será visivel
+     * @param tamanhoTexto Tamanho de texto
+     * @param color cor do texto
      */
-    public static void displayFadeMessage(String message, int x, int y, int ticks, int textSize, int color){
-       // FadedText fade = new FadedText(message, ticks, x, y, textSize, color);
+    public static void displayFadeMessage(String message, int x, int y, int ticks, int tamanhoTexto, int color){
+       // FadedText fade = new FadedText(message, ticks, x, y, tamanhoTexto, color);
        // fade.play();
     }
 
     /**
-     * Displays text that flies downward in an arch.
+     * Exibe o texto que voa para baixo em um arco.
      * @param message The message to draw
-     * @param x The initial x position of the message
-     * @param y The initial y position of the message
-     * @param ticks The time the message stays visible
-     * @param textSize The size of the message
-     * @param color The color of the message
-     * @param directionVec The direction vector of the message
+     * @param x posição X da menssagem
+     * @param y posição Y da menssagem
+     * @param ticks Tempo que a menssagem será visivel
+     * @param tamanhoTexto Tamanho de texto
+     * @param color cor do texto
+     * @param directionVec O vetor de direção da mensagem
      */
-    public static void displayParabolicText(String message, int x, int y, int ticks, int textSize, int color, double directionVec){
-       // ParabolicText parabola = new ParabolicText(message, ticks, x, y, textSize, color, directionVec);
+    public static void displayParabolicText(String message, int x, int y, int ticks, int tamanhoTexto, int color, double directionVec){
+       // ParabolicText parabola = new ParabolicText(message, ticks, x, y, tamanhoTexto, color, directionVec);
        // parabola.play();
     }
     /**
-     * Displays text that flies downward in an arch.
+     * Exibe o texto que voa para baixo em um arco.
      * @param message The message to draw
-     * @param x The initial x position of the message
-     * @param y The initial y position of the message
-     * @param ticks The time the message stays visible
-     * @param textSize The size of the message
-     * @param color The color of the message
-     * @param directionVec The direction vector of the message
-     * @param initialA The initial a value of the parabola
+     * @param x posição X da menssagem
+     * @param y posição Y da menssagem
+     * @param ticks Tempo que a menssagem será visivel
+     * @param tamanhoTexto Tamanho de texto
+     * @param color cor do texto
+     * @param directionVec O vetor de direção da mensagem
+     * @param initialA Valor inicial da parabola
      */
-    public static void displayParabolicText(String message, int x, int y, int ticks, int textSize, int color, double directionVec, double initialA){
-      //  ParabolicText parabola = new ParabolicText(message, ticks, x, y, textSize, color, directionVec, initialA);
+    public static void displayParabolicText(String message, int x, int y, int ticks, int tamanhoTexto, int color, double directionVec, double initialA){
+      //  ParabolicText parabola = new ParabolicText(message, ticks, x, y, tamanhoTexto, color, directionVec, initialA);
      //   parabola.play();
     }
 
-    //AVISO BUG DE EXCEPTION SE NO FINAL DA FRASE ECISTIR UM ESPAÇO 'trbalhar nesse bug'
+    //AVISO BUG DE EXCEPTION SE NO FINAL DA FRASE EXISTIR UM ESPAÇO 'trbalhar nesse bug'
     public static void displayTypingText(String message, int x, int y, int tickDelay, int textSize, int color, boolean centered){
         TypingText type = new TypingText(message, x, y, tickDelay, textSize, color, centered);
         type.play();
     }
 
     /**
-     * Returns the speed of an object, given the distance to travel and amount of time taken.
-     * Scales with screen size.
+     * Retorna a velocidade de um objeto, dada a distância percorrida e o tempo gasto.
+     * Escalas com tamanho de tela.
      * @param distance The distance to travel
      * @param ticksToReach The amount of time needed
      * @return The speed in pixels
      */
     public static double getSpeed(double distance, int ticksToReach){
-        // Determine velocity (distance / time), should be used to determine the correct speeds
-        // on different screen sizes
+        // Determine a velocidade (distância / tempo), deve ser usado para determinar as velocidades corretas
+        // em diferentes tamanhos de tela
         return distance / (double) ticksToReach;
     }
 
     /**
-     * Displays the particle effect.
-     * @param y The y level of the upper particles.
-     * @param y2 The y level of the lower particles.
+     * Exibe o efeito de partículas.
+     * @param y O nível y das partículas superiores.
+     * @param y2 O nível y das partículas inferiores.
      */
     public static void displayParticleEffect(int y, int y2, int color){
         double exclamationSpeedA = HUDManager.getSpeed(CoreManager.largura, 304);
