@@ -7,26 +7,26 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
-import br.com.onuse.freedomdreamers.freedom.hudobjects.TypingText;
+import br.com.onuse.freedomdreamers.freedom.hudobjects.DigitandoTexto;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
 
 public class HUDManager {
-    public static int largura = 0;
-    public static int altura = 0;
+    private static int largura = 0;
+    private static int altura = 0;
     private static Bitmap play, back, info, start;
     private static ButtonManager buttonManager;
     private static TextoAnimadoManager animatedTextManager;
     private static EntityManager entityManager;
     public static int selection = 0;
-    public static int infoState = 0;
+    private static int infoState = 0;
     public static int hudEndXPositions[] = new int[5];
     public static int hudEndYPositions[] = new int[5];
 
     public static int[] colors = {Color.RED, Color.rgb(75, 75, 255), Color.CYAN, Color.rgb(255, 80, 0), Color.GREEN};
-    public HUDManager(){
-        this.largura = NucleoManager.largura;
-        this.altura = NucleoManager.altura;
+    HUDManager(){
+        largura = NucleoManager.largura;
+        altura = NucleoManager.altura;
         //inicia novo botaoManager
         buttonManager = new ButtonManager();
         animatedTextManager = new TextoAnimadoManager();
@@ -67,10 +67,10 @@ public class HUDManager {
     /**
      * Chamado quando o {@link EstadoTela} muda.
      * Cria todos os botões
-     * @param oldState estado anterior da tela {@link EstadoTela}
+     * @param velhoEstado estado anterior da tela {@link EstadoTela}
      * @param novoEstado novo estado da tela {@link EstadoTela}
      */
-    public static void onStateChange(EstadoTela oldState, EstadoTela novoEstado){
+    public static void onStateChange(EstadoTela velhoEstado, EstadoTela novoEstado){
         // Limpa todos os botões não importa o que
         //buttonManager.clearButtons();
        // entityManager.clear();
@@ -79,7 +79,7 @@ public class HUDManager {
         switch (novoEstado){
 
             case TITULO:
-                HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 8, 11, Color.rgb(0,191,255), true);
+                HUDManager.displayTypingText("espere... § contenue...", largura / 2, altura / 2, 8, 11, Color.rgb(0,191,255), true);
                 HUDManager.displayTypingText("Choose a character...", largura / 3, altura / 3, 10, 11, Color.rgb(0,191,255), false);
 
                 // Reseta o info state
@@ -391,7 +391,7 @@ public class HUDManager {
         paint.setColor(color);
         paint.setTextSize(scaledTextSize);
         Rect bounds = new Rect();
-        // Get bounds of the text, then center
+        // Obtenha limites do texto e, em seguida, centralize
         paint.getTextBounds(text, 0, text.length(), bounds);
         x -= bounds.width() / 2;
 //        y -= bounds.height() / 2;
@@ -422,13 +422,12 @@ public class HUDManager {
         paint.setColor(Color.WHITE);
     }
     /**
-     * Draws a bitmap, centered to the position given.
-     *
-     * @param bitmap The {@link Bitmap} image to be drawn
-     * @param canvas The {@link Canvas} object to draw to
-     * @param paint The {@link Paint} object to draw with
-     * @param x The x position of the bitmap
-     * @param y The y position of the bitmap
+     *Desenha um bitmap, centralizado para a posição passada
+     * @param bitmap {@link Bitmap} imagem para ser desenhada
+     * @param canvas {@link Canvas} objeto de painel
+     * @param paint {@link Paint} objeto de pintura
+     * @param x posição X do texto
+     * @param y posição Y do texto
      */
     public static void drawCenteredBitmap(Bitmap bitmap, Canvas canvas, Paint paint, int x, int y){
         x -= (bitmap.getWidth() / 2);
@@ -480,16 +479,16 @@ public class HUDManager {
         paint.setStyle(Paint.Style.FILL);
 
         Rect bounds = new Rect();
-        // Get bounds of the text, then center
+        // Desenha um texto normal
         paint.getTextBounds(text, 0, text.length(), bounds);
         x -= bounds.width() / 2;
 //        y -= bounds.height() / 2;
 
-        // Draw normal text
+        //desenha um texto normal
         paint.setShadowLayer(3, 0, 0, Color.BLACK);
         canvas.drawText(text, x, y, paint);
         paint.setShadowLayer(0, 0, 0, Color.BLACK);
-        // Draw black border
+        //desenha um texto normal com borda
 
         paint.setTextSize(old);
         paint.setColor(Color.WHITE);
@@ -539,9 +538,9 @@ public class HUDManager {
      //   parabola.play();
     }
 
-    //AVISO BUG DE EXCEPTION SE NO FINAL DA FRASE EXISTIR UM ESPAÇO 'trbalhar nesse bug'
+    //AVISO BUG DE EXCEPTION SE NO FINAL DA FRASE EXISTIR UM ESPAÇO 'trabalhar nesse bug'
     public static void displayTypingText(String message, int x, int y, int tickDelay, int textSize, int color, boolean centered){
-        TypingText type = new TypingText(message, x, y, tickDelay, textSize, color, centered);
+        DigitandoTexto type = new DigitandoTexto(message, x, y, tickDelay, textSize, color, centered);
         type.play();
     }
 

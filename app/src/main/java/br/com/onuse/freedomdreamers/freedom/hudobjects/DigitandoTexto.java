@@ -1,6 +1,6 @@
 package br.com.onuse.freedomdreamers.freedom.hudobjects;
 
-public class TypingText extends TextoAnimado {
+public class DigitandoTexto extends TextoAnimado {
     private int tick = 0;
     private int wait = 0;
     private int tickDelay;
@@ -11,15 +11,16 @@ public class TypingText extends TextoAnimado {
 
     /**
      *
-     * @param text The text to draw
-     * @param tickDelay The amount of time to delay between each character
-     * @param x The x position of the text
-     * @param y The y position of the text
-     * @param textSize The size of the text
-     * @param color The color of the text
+     * @param text Texto para desenhar
+     * @param tickDelay tempo de espera em cada caractere
+     * @param x posição X do texto
+     * @param y posição Y do texto
+     * @param tamanhoTexto tamanho do texto
+     * @param color cor Texto
+     * @param centralizado centraliza o texto (true=sim false=não)
      */
-    public TypingText(String text, int x, int y, int tickDelay, int textSize, int color, boolean centered){
-        super("", x, y, textSize, color, 255, centered);
+    public DigitandoTexto(String text, int x, int y, int tickDelay, int tamanhoTexto, int color, boolean centralizado){
+        super("", x, y, tamanhoTexto, color, 255, centralizado);
         this.tickDelay = tickDelay;
         this.text = text;
     }
@@ -31,26 +32,26 @@ public class TypingText extends TextoAnimado {
     public void tick(){
         if (super.active){
             if (typing){
-                // Initial check for waiting ticks
+                // Checagem inicial para ticks de espera
                 if (wait > 0){
                     wait--;
                     return;
                 }
-                // Type next char every interval according to tick delay
+                // Digite next char a cada intervalo de acordo com o atraso do tick
                 if (tick % tickDelay == 0){
                     if (currentIndex <= text.length() - 1){
-                        // Skip spaces
+                        // Pular espaçoes brancos
                         while (text.charAt(currentIndex) == ' '){
                             currentText += " ";
                             currentIndex++;
                         }
-                        // Check for symbol for pauses
+                        // Checa por simbolos para pausas ('§' tempo definido)
                         if (text.charAt(currentIndex) == '§'){
-                            wait += 10;
+                            wait += 100;
                             currentIndex++;
                             return;
                         }
-                        // Append next char, and continue
+                        // Anexe o próximo caractere e continue
                         currentText += text.charAt(currentIndex);
                         super.text = currentText;
                         currentIndex++;

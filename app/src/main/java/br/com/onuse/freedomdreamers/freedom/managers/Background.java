@@ -11,10 +11,10 @@ import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
 public class Background {
     private static ArrayList<Bitmap> background;
-    private Bitmap clouds, bg;
+    private Bitmap clouds;
     private static Animator animate;
     private static double xOff = 0;
-    public Background(){
+    Background(){
         // Carrega os assets da memoria
         clouds = Assets.getBitmapFromMemory("nuvens");
         //cria um array para fazer uma animação do tipo gif
