@@ -51,16 +51,15 @@ public class TextoAnimado {
         int adicionar = 0;
             for (String textSegment : text.split("\n")){
                 if (centralizado)
-                    drawCenteredText(textSegment, canvas, (int) x, (int) y + adicionar, paint, tamanhoTexto, color);
+                    densenhaTextoCentralizado(textSegment, canvas, (int) x, (int) y + adicionar, paint, tamanhoTexto, color);
                 else
                     HUDManager.drawText(textSegment, canvas, (int) x, (int) y, paint, tamanhoTexto, color);
                 adicionar += tamanhoTexto * 5.5;
                 }
     }
 
-
     /**
-     * Starts animating the text.
+     * Inicia a animação do texto
      */
     public void play(){
         active = true;
@@ -68,7 +67,7 @@ public class TextoAnimado {
     }
 
     /**
-     * Stops the animated text.
+     * Para a animação do texto
      */
     public void destroy(){
         active = false;
@@ -98,7 +97,7 @@ public class TextoAnimado {
      * @param tamanhoTexto Tamanho do texto
      * @param color cor do texto
      */
-    public void drawCenteredText(String text, Canvas canvas, int x, int y, Paint paint, int tamanhoTexto, int color){
+    public void densenhaTextoCentralizado(String text, Canvas canvas, int x, int y, Paint paint, int tamanhoTexto, int color){
         float old = paint.getTextSize();
         double relation = Math.sqrt(canvas.getWidth() * canvas.getHeight()) / 250;
         float scaledTextSize = (float) (tamanhoTexto * relation);
@@ -106,7 +105,7 @@ public class TextoAnimado {
         paint.setColor(color);
         paint.setAlpha(currAlpha);
         Rect bounds = new Rect();
-        // Get bounds of the text, then center
+        //Obtenha limites do texto e, em seguida, centralize
         paint.getTextBounds(text, 0, text.length(), bounds);
         x -= bounds.width() / 2;
 //        y -= bounds.height() / 2;
