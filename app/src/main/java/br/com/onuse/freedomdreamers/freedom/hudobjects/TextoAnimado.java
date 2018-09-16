@@ -9,7 +9,7 @@ import br.com.onuse.freedomdreamers.freedom.managers.TextoAnimadoManager;
 import br.com.onuse.freedomdreamers.freedom.managers.HUDManager;
 
 public class TextoAnimado {
-    private double x, y;
+    public double x, y;
     public String text;
     private int tamanhoTexto;
     public int color;

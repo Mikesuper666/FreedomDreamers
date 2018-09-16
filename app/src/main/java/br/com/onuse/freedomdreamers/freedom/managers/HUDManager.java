@@ -8,12 +8,13 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import br.com.onuse.freedomdreamers.freedom.hudobjects.DigitandoTexto;
+import br.com.onuse.freedomdreamers.freedom.hudobjects.EsmaecimentoTexto;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
 
 public class HUDManager {
-    private static int largura = 0;
-    private static int altura = 0;
+    public static int largura = 0;
+    public static int altura = 0;
     private static Bitmap play, back, info, start;
     private static ButtonManager buttonManager;
     private static TextoAnimadoManager animatedTextManager;
@@ -81,7 +82,7 @@ public class HUDManager {
             case TITULO:
                 HUDManager.displayTypingText("espere... § contenue...", largura / 2, altura / 2, 8, 11, Color.rgb(0,191,255), true, 200);
                 HUDManager.displayTypingText("Choose a § character...", largura / 3, altura / 3, 10, 11, Color.rgb(0,191,255), false, 100);
-
+                displayFadeMessage("Este texto aparece e desaparece",largura / 4, altura / 4, 200, 11, Color.BLUE);
                 // Reseta o info state
                 infoState = 0;
                 break;
@@ -125,7 +126,7 @@ public class HUDManager {
 
             // Tela titulo do jogo
             case TITULO:
-                drawText("texto",canvas, largura / 4, altura / 4, paint, 11, Color.RED);
+                //drawText("texto",canvas, largura / 4, altura / 4, paint, 11, Color.RED);
                 break;
 
             // Info Screen
@@ -504,8 +505,8 @@ public class HUDManager {
      * @param color cor do texto
      */
     public static void displayFadeMessage(String message, int x, int y, int ticks, int tamanhoTexto, int color){
-       // FadedText fade = new FadedText(message, ticks, x, y, tamanhoTexto, color);
-       // fade.play();
+        EsmaecimentoTexto fade = new EsmaecimentoTexto(message, ticks, x, y, tamanhoTexto, color);
+        fade.play();
     }
 
     /**
@@ -519,7 +520,7 @@ public class HUDManager {
      * @param directionVec O vetor de direção da mensagem
      */
     public static void displayParabolicText(String message, int x, int y, int ticks, int tamanhoTexto, int color, double directionVec){
-       // ParabolicText parabola = new ParabolicText(message, ticks, x, y, tamanhoTexto, color, directionVec);
+       // ParticulaTexto parabola = new ParticulaTexto(message, ticks, x, y, tamanhoTexto, color, directionVec);
        // parabola.play();
     }
     /**
@@ -534,7 +535,7 @@ public class HUDManager {
      * @param initialA Valor inicial da parabola
      */
     public static void displayParabolicText(String message, int x, int y, int ticks, int tamanhoTexto, int color, double directionVec, double initialA){
-      //  ParabolicText parabola = new ParabolicText(message, ticks, x, y, tamanhoTexto, color, directionVec, initialA);
+      //  ParticulaTexto parabola = new ParticulaTexto(message, ticks, x, y, tamanhoTexto, color, directionVec, initialA);
      //   parabola.play();
     }
 
