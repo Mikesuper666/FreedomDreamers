@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
-public class CoreManager {
+public class NucleoManager {
     public static int largura;
     public static int altura;
     private int tick = 0;
@@ -21,7 +21,7 @@ public class CoreManager {
     public static Context context;
     public static ScreenState state;
     public static boolean allowTouch = true;
-    public CoreManager(Context context, int largura, int altura){
+    public NucleoManager(Context context, int largura, int altura){
         this.context = context;
         this.largura = largura;
         this.altura = altura;
@@ -32,7 +32,7 @@ public class CoreManager {
      * Chamado quando este manager é inicializado.
      */
     public void init(){
-        // Initialize HUD manager, background manager, and SE manager
+        // Inicia HUDmanager, background manager, and SE manager
         // Inicia o gerenciador de HUD, o gerenciador de background e o gerente de SE
         // carrega sound effects
         state = ScreenState.TITLE;

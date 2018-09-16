@@ -10,16 +10,14 @@ import android.view.MotionEvent;
 import android.view.View;
 
 
-import br.com.onuse.freedomdreamers.freedom.managers.CoreManager;
+import br.com.onuse.freedomdreamers.freedom.managers.NucleoManager;
 import br.com.onuse.freedomdreamers.freedom.managers.Soundtrack;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
-
-import static java.security.AccessController.getContext;
 
 public class CoreView extends View {
     public Canvas canvas;
     Typeface font;
-    private CoreManager manager;
+    private NucleoManager manager;
     private Soundtrack soundtrack;
     private Assets assets;
     private Loop loop;
@@ -45,7 +43,7 @@ public class CoreView extends View {
      */
     private void init(){
         assets = new Assets(getContext(), largura, altura);
-        manager = new CoreManager(getContext(), largura, altura);
+        manager = new NucleoManager(getContext(), largura, altura);
         loop = new Loop(this);
         font = Typeface.createFromAsset(getContext().getAssets(), "fonts/font.ttf");
     }

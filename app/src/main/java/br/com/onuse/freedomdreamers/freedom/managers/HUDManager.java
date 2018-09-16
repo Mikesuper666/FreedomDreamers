@@ -25,8 +25,8 @@ public class HUDManager {
 
     public static int[] colors = {Color.RED, Color.rgb(75, 75, 255), Color.CYAN, Color.rgb(255, 80, 0), Color.GREEN};
     public HUDManager(){
-        this.largura = CoreManager.largura;
-        this.altura = CoreManager.altura;
+        this.largura = NucleoManager.largura;
+        this.altura = NucleoManager.altura;
         //inicia novo botaoManager
         buttonManager = new ButtonManager();
         animatedTextManager = new TextoAnimadoManager();
@@ -121,7 +121,7 @@ public class HUDManager {
      */
     public void render(Canvas canvas, Paint paint){
         //Rebderiza todos os textos, HUDs, items, etc... depende do estado de tela.
-        switch(CoreManager.state){
+        switch(NucleoManager.state){
 
             // Tela titulo do jogo
             case TITLE:
@@ -564,8 +564,8 @@ public class HUDManager {
      * @param y2 O nível y das partículas inferiores.
      */
     public static void displayParticleEffect(int y, int y2, int color){
-        double exclamationSpeedA = HUDManager.getSpeed(CoreManager.largura, 304);
-        double exclamationSpeedB = HUDManager.getSpeed(CoreManager.largura, 274);
+        double exclamationSpeedA = HUDManager.getSpeed(NucleoManager.largura, 304);
+        double exclamationSpeedB = HUDManager.getSpeed(NucleoManager.largura, 274);
         displayParabolicText(".", (int) (largura * 0.25), y, 120, 15, color, -exclamationSpeedA);
         displayParabolicText(".", (int) (largura * 0.28), y2, 120, 15, color, -exclamationSpeedB);
         displayParabolicText(".", (int) (largura * 0.75), y, 120, 15, color, exclamationSpeedA);

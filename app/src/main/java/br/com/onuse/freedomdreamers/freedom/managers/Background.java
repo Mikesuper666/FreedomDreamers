@@ -2,7 +2,6 @@ package br.com.onuse.freedomdreamers.freedom.managers;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 import java.util.ArrayList;
@@ -36,14 +35,14 @@ public class Background {
      * Lida com elementos em movimento no fundo.
      */
     public void tick(){
-        switch(CoreManager.state){
+        switch(NucleoManager.state){
             // Todos os movimentos para coisas em segundo plano são tratados aqui.
             case CHAR_SELECT:
             case TITLE:
             case LOAD:
             case INFO:
-                if (xOff < CoreManager.largura + clouds.getWidth()){
-                    xOff += HUDManager.getSpeed(CoreManager.largura, 1500);
+                if (xOff < NucleoManager.largura + clouds.getWidth()){
+                    xOff += HUDManager.getSpeed(NucleoManager.largura, 1500);
                 }else{
                     xOff = 0;
                 }
@@ -97,10 +96,10 @@ public class Background {
             canvas.drawBitmap(animate.sprite, 0, 0, paint);
             animate.update(System.currentTimeMillis());
         }
-        switch(CoreManager.state){
+        switch(NucleoManager.state){
             // Todos os objetos em movimento no fundo são desenhados aqui.
             case TITLE:
-                canvas.drawBitmap(clouds, CoreManager.largura - (int) xOff, CoreManager.altura / 10, paint);
+                canvas.drawBitmap(clouds, NucleoManager.largura - (int) xOff, NucleoManager.altura / 10, paint);
                 break;
             case INFO:
                 break;
