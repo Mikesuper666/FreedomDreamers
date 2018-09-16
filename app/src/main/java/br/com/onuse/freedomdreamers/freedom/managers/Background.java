@@ -32,12 +32,12 @@ public class Background {
     }
 
     /**
-     * Called when the game ticks.
-     * Handles moving elements in the background.
+     * Chamado quando o jogo renderiza
+     * Lida com elementos em movimento no fundo.
      */
     public void tick(){
         switch(CoreManager.state){
-            // All movement for things in the background are handled here.
+            // Todos os movimentos para coisas em segundo plano são tratados aqui.
             case CHAR_SELECT:
             case TITLE:
             case LOAD:
@@ -52,14 +52,14 @@ public class Background {
     }
 
     /**
-     * Called when the {@link ScreenState} changes.
-     * @param oldState The previous {@link ScreenState}
-     * @param newState The new {@link ScreenState}
+     * Chamado quando {@link ScreenState} muda.
+     * @param velhoEstado estado da tela anterior {@link ScreenState}
+     * @param novoEstado estado da tela atual {@link ScreenState}
      */
-    public static void onStateChange(ScreenState oldState, ScreenState newState){
-        // No matter what, clear all frames in the background, and reload.
+    public static void onStateChange(ScreenState velhoEstado, ScreenState novoEstado){
+        // Não importa o que tiver na tela, limpe todos os quadros em segundo plano e recarregue.
         background.clear();
-        switch (newState){
+        switch (novoEstado){
             case TITLE:
                 background.add(Assets.getBitmapFromMemory("intro"));
 
@@ -87,9 +87,9 @@ public class Background {
     }
 
     /**
-     * Called when the game renders.
-     * @param canvas The {@link Canvas} to draw on
-     * @param paint The {@link Paint} object to draw with
+     * Chamado quando o jogo renderiza
+     * @param canvas {@link Canvas} objeto de painel de pintura
+     * @param paint {@link Paint} objeto de pintura
      */
     public void render(Canvas canvas, Paint paint){
         // Desenhe o quadro atual e atualize o animador com o tempo
@@ -98,7 +98,7 @@ public class Background {
             animate.update(System.currentTimeMillis());
         }
         switch(CoreManager.state){
-            // All moving objects in the background are drawn here.
+            // Todos os objetos em movimento no fundo são desenhados aqui.
             case TITLE:
                 canvas.drawBitmap(clouds, CoreManager.largura - (int) xOff, CoreManager.altura / 10, paint);
                 break;
