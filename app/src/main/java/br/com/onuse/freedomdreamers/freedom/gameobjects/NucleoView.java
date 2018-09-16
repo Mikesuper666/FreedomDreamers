@@ -14,7 +14,7 @@ import br.com.onuse.freedomdreamers.freedom.managers.NucleoManager;
 import br.com.onuse.freedomdreamers.freedom.managers.Soundtrack;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
-public class CoreView extends View {
+public class NucleoView extends View {
     public Canvas canvas;
     Typeface font;
     private NucleoManager manager;
@@ -30,7 +30,7 @@ public class CoreView extends View {
      * @param largura A largura da View
      * @param altura A altura da view
      */
-    public CoreView(Context context, int largura, int altura) {
+    public NucleoView(Context context, int largura, int altura) {
         super(context);
         this.largura = largura;
         this.altura = altura;

@@ -79,8 +79,8 @@ public class HUDManager {
         switch (novoEstado){
 
             case TITULO:
-                HUDManager.displayTypingText("espere... § contenue...", largura / 2, altura / 2, 8, 11, Color.rgb(0,191,255), true);
-                HUDManager.displayTypingText("Choose a character...", largura / 3, altura / 3, 10, 11, Color.rgb(0,191,255), false);
+                HUDManager.displayTypingText("espere... § contenue...", largura / 2, altura / 2, 8, 11, Color.rgb(0,191,255), true, 200);
+                HUDManager.displayTypingText("Choose a § character...", largura / 3, altura / 3, 10, 11, Color.rgb(0,191,255), false, 100);
 
                 // Reseta o info state
                 infoState = 0;
@@ -97,7 +97,7 @@ public class HUDManager {
                 break;
 
             case CHAR_SELECT:
-                HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                //HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                 break;
 
             case BATALHA:
@@ -105,10 +105,10 @@ public class HUDManager {
 
             case INVENTARIO:
                 // When the player enters the inventory screen (0)
-                HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                //HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                 break;
             case SHOP:
-                HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                //HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                 break;
         }
     }
@@ -131,24 +131,24 @@ public class HUDManager {
             // Info Screen
             case INFO:
                 // Draw page number
-                HUDManager.displayTypingText("Choose a character...", largura / 4, altura / 4, 2, 11, Color.rgb(0,191,255), true);
+                //HUDManager.displayTypingText("Choose a character...", largura / 4, altura / 4, 2, 11, Color.rgb(0,191,255), true);
                 // Info title and info
                 switch(infoState){
                     // Info screen
                     case 0:
-                        HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                       // HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                         break;
                     // Tela de combate
                     case 1:
-                        HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                        //HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                         break;
                     // Tela de hablidades
                     case 2:
-                        HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                       // HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                         break;
                     // Tela de items
                     case 3:
-                        HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                        //HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                         break;
                 }
                 break;
@@ -175,7 +175,7 @@ public class HUDManager {
 
             //Tela de seleção de personagens
             case CHAR_SELECT:
-                HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                //HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
                 break;
 
             //Tela de transição de estágio
@@ -539,8 +539,8 @@ public class HUDManager {
     }
 
     //AVISO BUG DE EXCEPTION SE NO FINAL DA FRASE EXISTIR UM ESPAÇO 'trabalhar nesse bug'
-    public static void displayTypingText(String message, int x, int y, int tickDelay, int textSize, int color, boolean centered){
-        DigitandoTexto type = new DigitandoTexto(message, x, y, tickDelay, textSize, color, centered);
+    public static void displayTypingText(String message, int x, int y, int tickDelay, int textSize, int color, boolean centered, int pause){
+        DigitandoTexto type = new DigitandoTexto(message, x, y, tickDelay, textSize, color, centered, pause);
         type.play();
     }
 

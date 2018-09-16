@@ -9,9 +9,9 @@ import br.com.onuse.freedomdreamers.freedom.managers.TextoAnimadoManager;
 import br.com.onuse.freedomdreamers.freedom.managers.HUDManager;
 
 public class TextoAnimado {
-    public double x, y;
+    private double x, y;
     public String text;
-    public int tamanhoTexto;
+    private int tamanhoTexto;
     public int color;
     public boolean active = false;
     public int currAlpha;
@@ -26,7 +26,7 @@ public class TextoAnimado {
      * @param color Cor do texto
      * @param startingAlpha A opacidade inicial do texto
      */
-    public TextoAnimado(String text, int x, int y, int tamanhoTexto, int color, int startingAlpha, boolean centralizado){
+    TextoAnimado(String text, int x, int y, int tamanhoTexto, int color, int startingAlpha, boolean centralizado){
         this.text = text;
         this.tamanhoTexto = tamanhoTexto;
         this.color = color;

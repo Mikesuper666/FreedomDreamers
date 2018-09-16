@@ -3,6 +3,7 @@ package br.com.onuse.freedomdreamers.freedom.hudobjects;
 public class DigitandoTexto extends TextoAnimado {
     private int tick = 0;
     private int wait = 0;
+    private int pause = 0;
     private int tickDelay;
     private boolean typing = true;
     private String currentText = "";
@@ -18,10 +19,12 @@ public class DigitandoTexto extends TextoAnimado {
      * @param tamanhoTexto tamanho do texto
      * @param color cor Texto
      * @param centralizado centraliza o texto (true=sim false=não)
+     * @param pause pausa de intervalo maior programado '§' << deve ser inserido da string {@param text} para ser ativado 0 a 1000 'recomendado'
      */
-    public DigitandoTexto(String text, int x, int y, int tickDelay, int tamanhoTexto, int color, boolean centralizado){
+    public DigitandoTexto(String text, int x, int y, int tickDelay, int tamanhoTexto, int color, boolean centralizado, int pause){
         super("", x, y, tamanhoTexto, color, 255, centralizado);
         this.tickDelay = tickDelay;
+        this.pause = pause;
         this.text = text;
     }
 
@@ -47,7 +50,7 @@ public class DigitandoTexto extends TextoAnimado {
                         }
                         // Checa por simbolos para pausas ('§' tempo definido)
                         if (text.charAt(currentIndex) == '§'){
-                            wait += 100;
+                            wait += pause;
                             currentIndex++;
                             return;
                         }

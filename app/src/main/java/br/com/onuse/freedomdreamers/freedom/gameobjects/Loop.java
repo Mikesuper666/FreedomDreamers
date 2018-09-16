@@ -3,11 +3,11 @@ package br.com.onuse.freedomdreamers.freedom.gameobjects;
 import android.os.Handler;
 
 public class Loop {
-    public static int FPS = 60;
+    private static int FPS = 60;
     public static boolean paused = false;
     private Handler handler;
     private Runnable runnable;
-    private final CoreView c;
+    private final NucleoView c;
     private long beginTime;
     private long timeDiff;
     private int sleepTime;
@@ -16,12 +16,12 @@ public class Loop {
     private int maxFrameSkips = 5;
 
     /**
-     * Initializes and starts the game loop.
-     * @param coreView The {@link CoreView} to pass on
+     * Inicializa o Loop do jogo
+     * @param nucleoView {@link NucleoView} classe acessada
      */
-    public Loop(CoreView coreView){
+    Loop(NucleoView nucleoView){
         sleepTime = 0;
-        c = coreView;
+        c = nucleoView;
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -35,7 +35,7 @@ public class Loop {
                 }
                 timeDiff = System.currentTimeMillis() - beginTime;
                 sleepTime = (int) (framePeriod - timeDiff);
-                // If falling behind, skip a few frames and tick without rendering
+                // Se ficar para trás, pule alguns quadros e marque sem renderizar
                 while (sleepTime < 0 && framesSkipped < maxFrameSkips) {
                     if (!paused){
                         c.tick();
@@ -44,14 +44,14 @@ public class Loop {
                     framesSkipped++;
                 }
                 if (framesSkipped > 0){
-                    // Display a warning in system out
-                    System.out.println("Can't keep up! Skipped " + framesSkipped + " frames");
+                    // mostre o aviso nos Warning da IDE
+                    System.out.println("Não pode renderizar. Pulou: " + framesSkipped + " frames");
                 }
-                // Re-run the runnable
+                // re-inicie o processo
                 handler.postDelayed(runnable, sleepTime);
             }
         };
-        // Run the thing for the first time
+        // inicia o processo pela primeira vez
         handler.post(runnable);
     }
 }

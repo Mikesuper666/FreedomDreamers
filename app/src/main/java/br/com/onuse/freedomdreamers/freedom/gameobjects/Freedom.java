@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-import br.com.onuse.freedomdreamers.freedom.managers.Soundtrack;
-
 public class Freedom extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +18,7 @@ public class Freedom extends Activity{
         int altura = displaymetrics.heightPixels;
         int largura = displaymetrics.widthPixels;
         //  Criar nova View com largura e altura da tela
-        setContentView(new CoreView(this, largura, altura));
+        setContentView(new NucleoView(this, largura, altura));
         View decorView = getWindow().getDecorView();
         // Definir sinalizadores do sistema para permitir a barra de navegação em tela inteira e transparente não aderente
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
@@ -42,7 +40,7 @@ public class Freedom extends Activity{
         //Soundtrack.resume();
         Loop.paused = false;
 
-        // Reset system flags
+        //Reset e atualização de posição
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOptions);
