@@ -28,7 +28,7 @@ public class Assets {
     }
 
     /**
-     * Initializes all {@link Bitmap} image assets, and sound assets.
+     * Inicia todos {@link Bitmap} imagems, e sons assets.
      */
     public void init(){
         // Backgrounds
@@ -36,36 +36,35 @@ public class Assets {
         bitmapDb.put("intro", getBitmap(context, "backgrounds/intro/intro_a.png", true));
     }
     /**
-     * Returns a {@link Bitmap} object from a file, scaled accordingly to the screen size.
-     * @param context The {@link Context} to use
-     * @param filePath The file path
-     * @param fitLargura T
+     * Returna {@link Bitmap} objeto do arquivo, escalado de acordo com o tamanho da tela.
+     * @param context {@link Context} contexto da classe ue acessa
+     * @param filePath caminho do arquivo que será acessado
+     * @param dimensionar (true=redimensiona a imagem com o tamanho da tela)(false=tamanho padrao da imagem)
      * @return A {@link Bitmap}
      */
-    public static Bitmap getBitmap(Context context, String filePath, boolean fitLargura) {
+    public static Bitmap getBitmap(Context context, String filePath, boolean dimensionar) {
         AssetManager assetManager = context.getAssets();
-        // Create a new input stream, and open the path
+        //Cria um novo input stream, e abre o caminho
         InputStream istr;
         Bitmap bitmap = null;
         try {
             istr = assetManager.open(filePath);
-            // Assuming it is a bitmap, decode the stream
+            //Assumindo que é um bitmap, decodifica o stream
             bitmap = BitmapFactory.decodeStream(istr);
         } catch (IOException e) {}
 
         // Escala o bitmap para o tamanho proporcional a tela
-        double x = (fitLargura) ? largura :bitmap.getWidth() * largura / 1080;
-        double y = (fitLargura) ? altura : bitmap.getHeight() * altura / 1920;
-
+        double x = (dimensionar) ? largura :bitmap.getWidth() * largura / 1080;
+        double y = (dimensionar) ? altura : bitmap.getHeight() * altura / 1920;
 
         return Bitmap.createScaledBitmap(bitmap, (int) x, (int) y, true);
     }
 
     /**
-     * Returns the {@link AssetFileDescriptor} of a sound file.
-     * @param context The {@link Context} to use
-     * @param filePath The file path
-     * @return A {@link AssetFileDescriptor}
+     * Retorna o {@link AssetFileDescriptor} do aruivo de som
+     * @param context {@link Context} contexto da classe ue acessa
+     * @param filePath caminho do arquivo que será acessado
+     * @return {@link AssetFileDescriptor}
      */
     public static AssetFileDescriptor getSoundDesc(Context context, String filePath){
         try{
@@ -77,9 +76,9 @@ public class Assets {
     }
 
     /**
-     * Returns a {@link AssetFileDescriptor} from memory.
-     * @param name The name of the {@link AssetFileDescriptor}
-     * @return A {@link AssetFileDescriptor}
+     * Returna {@link AssetFileDescriptor} da memoria
+     * @param name o nome do {@link AssetFileDescriptor}
+     * @return {@link AssetFileDescriptor}
      */
     public static AssetFileDescriptor getSoundDescFromMemory(String name){
         if (soundDb.containsKey(name)){
@@ -89,9 +88,9 @@ public class Assets {
     }
 
     /**
-     * Returns a {@link Bitmap} from memory.
-     * @param name The name of the {@link Bitmap}
-     * @return A {@link Bitmap}
+     * Returna {@link Bitmap} da memoria
+     * @param name o nome de {@link Bitmap}
+     * @return {@link Bitmap}
      */
     public static Bitmap getBitmapFromMemory(String name){
         if (bitmapDb.containsKey(name)){

@@ -13,36 +13,36 @@ public class Animator {
 
     /**
      *
-     * @param frames The list of individual frames
+     * @param frames A lista de frames individuais
      */
     public Animator(ArrayList<Bitmap> frames){
         this.frames = new ArrayList<>(frames);
     }
 
     /**
-     * Sets the speed of the animation.
-     * @param speed The speed of the animation
+     * Seta a velocidade da animação
+     * @param speed A velocidade da animação
      */
     public void setSpeed(long speed){
         this.speed = speed;
     }
 
     /**
-     * Updates the frame of the current animation.
-     * @param time The system's time in milliseconds
+     * Atualizar o quadro da animação atual.
+     * @param time Tempo do sistema em minisegundos
      */
     public void update(long time){
         if (isRunning){
-            // Check if enough time has passed
+            // Verifique se já passou tempo suficiente
             if (time - prevTime >= speed){
-                // Update the current sprite
+                // atualiza o sprite atual
                 try{
                     sprite = frames.get(currentFrame);
                 }catch(IndexOutOfBoundsException e){
                     reset();
                     sprite = frames.get(currentFrame);
                 }
-                // Advance to next frame
+                // Avança para o proximo frame
                 currentFrame++;
                 prevTime = time;
             }
@@ -50,8 +50,8 @@ public class Animator {
     }
 
     /**
-     * Replaces the current set of frames with a new set.
-     * @param frames The new set of frames
+     * Substitui o conjunto atual de quadros por um novo conjunto.
+     * @param frames novo set de frames
      */
     public void replace(ArrayList<Bitmap> frames){
         stop();
@@ -61,7 +61,7 @@ public class Animator {
     }
 
     /**
-     * Starts the animation.
+     * Inicia a animação
      */
     public void play(){
         isRunning = true;
@@ -71,15 +71,14 @@ public class Animator {
     }
 
     /**
-     * Returns the current frame index.
-     * @return The current frame index
+     * @return Retorna para o index atual
      */
     public int getCurrentFrame(){
         return currentFrame;
     }
 
     /**
-     * Stops the animation.
+     * Para a animação
      */
     public void stop(){
         isRunning = false;
@@ -89,7 +88,7 @@ public class Animator {
     }
 
     /**
-     * Pauses the animation.
+     * Pausa a animação
      */
     public void pause(){
         frameAtPause = currentFrame;
@@ -97,7 +96,7 @@ public class Animator {
     }
 
     /**
-     * Resumes the animation.
+     * Resume a animação.
      */
     public void resume(){
         currentFrame = frameAtPause;
@@ -105,8 +104,7 @@ public class Animator {
     }
 
     /**
-     * Checks if the animation is finished.
-     * @return {@code true} if the animation is finished
+     * @return {@code true} Checa se a animação finalizou
      */
     public boolean isDoneAnimation(){
         if (currentFrame == frames.size()){
@@ -116,7 +114,7 @@ public class Animator {
     }
 
     /**
-     * Resets the animation.
+     * Reseta a animação
      */
     public void reset(){
         currentFrame = 0;
