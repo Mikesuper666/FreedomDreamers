@@ -123,18 +123,19 @@ public class HUDManager {
      * @param paint The {@link Paint} object to draw with
      */
     public void render(Canvas canvas, Paint paint){
-        // Render all text, HUD items, etc. depending on state
+        //Rebderiza todos os textos, HUDs, items, etc... depende do estado de tela.
         switch(CoreManager.state){
 
-            // Title Screen
+            // Tela titulo do jogo
             case TITLE:
                 // Title
+                drawText("texto",canvas, largura / 4, altura / 4, paint, 11, Color.RED);
                 break;
 
             // Info Screen
             case INFO:
                 // Draw page number
-                HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                HUDManager.displayTypingText("Choose a character...", largura / 4, altura / 4, 2, 11, Color.rgb(0,191,255), true);
                 // Info title and info
                 switch(infoState){
                     // Info screen

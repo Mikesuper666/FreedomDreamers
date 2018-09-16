@@ -61,7 +61,7 @@ public class Background {
         background.clear();
         switch (newState){
             case TITLE:
-                //background.add(Assets.getBitmapFromMemory("intro"));
+                background.add(Assets.getBitmapFromMemory("intro"));
 
                 break;
             case INFO:
@@ -92,8 +92,6 @@ public class Background {
      * @param paint The {@link Paint} object to draw with
      */
     public void render(Canvas canvas, Paint paint){
-        HUDManager.displayTypingText("Choose a character...", 0, 0, 2, 11, Color.rgb(255,2,5), true);
-
         // Desenhe o quadro atual e atualize o animador com o tempo
         if (background.size() > 0){
             canvas.drawBitmap(animate.sprite, 0, 0, paint);

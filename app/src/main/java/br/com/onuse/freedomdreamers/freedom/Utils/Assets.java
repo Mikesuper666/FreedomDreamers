@@ -33,12 +33,13 @@ public class Assets {
     public void init(){
         // Backgrounds
         bitmapDb.put("nuvens", getBitmap(context, "backgrounds/intro/nuvens.png", false));
-        bitmapDb.put("intro", getBitmap(context, "backgrounds/intro/intro_a.png", false));
+        bitmapDb.put("intro", getBitmap(context, "backgrounds/intro/intro_a.png", true));
     }
     /**
      * Returns a {@link Bitmap} object from a file, scaled accordingly to the screen size.
      * @param context The {@link Context} to use
      * @param filePath The file path
+     * @param fitLargura T
      * @return A {@link Bitmap}
      */
     public static Bitmap getBitmap(Context context, String filePath, boolean fitLargura) {

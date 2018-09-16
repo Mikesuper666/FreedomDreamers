@@ -71,7 +71,7 @@ public class CoreManager {
      * Toca todos os gerentes em ordem.
      */
     public void tick(){
-        // Tick all managers in order
+        // Tick todos (seja bomba as threads nesta ordem de primeiro para segundo)
         background.tick();
         hud.tick();
        /// se.tick();
@@ -94,9 +94,11 @@ public class CoreManager {
      */
     public void render(Canvas canvas, Paint paint){
         //Renderiza todos manages em ordem, isto determina o layer
+        //De cima para baixo
+        //Primeiro renderizado fica embaixo, segundo renderizado em cima etc
 
-        hud.render(canvas, paint);
         background.render(canvas, paint);
+        hud.render(canvas, paint);
       //  se.render(canvas, paint);
     }
 }

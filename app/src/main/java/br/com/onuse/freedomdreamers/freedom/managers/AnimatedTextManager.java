@@ -5,14 +5,14 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 
-import br.com.onuse.freedomdreamers.freedom.hudobjects.AnimatedText;
+import br.com.onuse.freedomdreamers.freedom.hudobjects.TextoAnimado;
 
 public class AnimatedTextManager {
-    public static ArrayList<AnimatedText> activeAnimatedTexts = new ArrayList<>();
-    public static void addText(AnimatedText text){
+    public static ArrayList<TextoAnimado> activeAnimatedTexts = new ArrayList<>();
+    public static void addText(TextoAnimado text){
         activeAnimatedTexts.add(text);
     }
-    public static void removeText(AnimatedText text){
+    public static void removeText(TextoAnimado text){
         activeAnimatedTexts.remove(text);
     }
     public static void clear(){
@@ -26,8 +26,8 @@ public class AnimatedTextManager {
      */
     public void render(Canvas canvas, Paint paint){
         // Create temp array to prevent concurrent modification exceptions
-        ArrayList<AnimatedText> temp = new ArrayList<>(activeAnimatedTexts);
-        for (AnimatedText s : temp){
+        ArrayList<TextoAnimado> temp = new ArrayList<>(activeAnimatedTexts);
+        for (TextoAnimado s : temp){
             s.render(canvas, paint);
         }
     }
@@ -37,8 +37,8 @@ public class AnimatedTextManager {
      */
     public void tick(){
         // Create temp array to prevent concurrent modification exceptions
-        ArrayList<AnimatedText> temp = new ArrayList<>(activeAnimatedTexts);
-        for (AnimatedText s : temp) {
+        ArrayList<TextoAnimado> temp = new ArrayList<>(activeAnimatedTexts);
+        for (TextoAnimado s : temp) {
             s.tick();
         }
     }

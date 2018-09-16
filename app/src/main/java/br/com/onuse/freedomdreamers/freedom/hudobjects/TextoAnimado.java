@@ -8,10 +8,10 @@ import android.graphics.Rect;
 import br.com.onuse.freedomdreamers.freedom.managers.AnimatedTextManager;
 import br.com.onuse.freedomdreamers.freedom.managers.HUDManager;
 
-public class AnimatedText {
+public class TextoAnimado {
     public double x, y;
     public String text;
-    public int textSize;
+    public int tamanhoTexto;
     public int color;
     public boolean active = false;
     public int currAlpha;
@@ -22,13 +22,13 @@ public class AnimatedText {
      * @param text Texto para ser mostrado na tela
      * @param x posição X da tela
      * @param y posição Y da tela
-     * @param textSize Tamanho da tela
+     * @param tamanhoTexto Tamanho da texto
      * @param color Cor do texto
      * @param startingAlpha A opacidade inicial do texto
      */
-    public AnimatedText(String text, int x, int y, int textSize, int color, int startingAlpha, boolean centralizado){
+    public TextoAnimado(String text, int x, int y, int tamanhoTexto, int color, int startingAlpha, boolean centralizado){
         this.text = text;
-        this.textSize = textSize;
+        this.tamanhoTexto = tamanhoTexto;
         this.color = color;
         this.x = x;
         this.y = y;
@@ -37,26 +37,24 @@ public class AnimatedText {
     }
 
     /**
-     * Called when the game ticks.
+     * Chamado quando o jogo ticks
      */
-    public void tick(){
-
-    }
+    public void tick(){}
 
     /**
      * Chamado quando o jogo renderiza
      * Renderiza o textoAnimado na tela
-     * @param canvas The {@link Canvas} object to render to
-     * @param paint The {@link Paint} object to render with
+     * @param canvas The {@link Canvas} Objeto para ser compadado
+     * @param paint The {@link Paint} Objeto para ser comparado
      */
     public void render(Canvas canvas, Paint paint){
         int adicionar = 0;
             for (String textSegment : text.split("\n")){
                 if (centralizado)
-                    drawCenteredText(textSegment, canvas, (int) x, (int) y + adicionar, paint, textSize, color);
+                    drawCenteredText(textSegment, canvas, (int) x, (int) y + adicionar, paint, tamanhoTexto, color);
                 else
-                    HUDManager.drawText(textSegment, canvas, (int) x, (int) y, paint, textSize, color);
-                adicionar += textSize * 5.5;
+                    HUDManager.drawText(textSegment, canvas, (int) x, (int) y, paint, tamanhoTexto, color);
+                adicionar += tamanhoTexto * 5.5;
                 }
     }
 
@@ -78,35 +76,32 @@ public class AnimatedText {
     }
 
     /**
-     * Checks if it is equal to another object.
-     * @param obj The object to compare to
-     * @return {@code true} if the it is equal
+     * Checa se este objeto é igual ao outro objeto
+     * @param obj Objeto para ser comparado
+     * @return {@code true} verdadeiro se igual, falso se não
      */
     public boolean equals(Object obj){
         if (obj == null) return false;
         if (obj == this) return true;
-        if (!(obj instanceof AnimatedText)) return false;
-        AnimatedText o = (AnimatedText) obj;
-        if (o.x == this.x && o.y == this.y && o.text.equals(this.text) && o.color == this.color){
-            return true;
-        }
-        return false;
+        if (!(obj instanceof TextoAnimado)) return false;
+        TextoAnimado o = (TextoAnimado) obj;
+        return o.x == this.x && o.y == this.y && o.text.equals(this.text) && o.color == this.color;
     }
 
     /**
-     * Draws text, centered to the position given.
-     * @param text The text to draw
-     * @param canvas The {@link Canvas} to draw on
-     * @param x The x position of the text
-     * @param y The y position of the text
-     * @param paint The {@link Paint} object to draw with
-     * @param textSize The size of the text
-     * @param color The color of the text
+     * Desenha o texto na posição passada
+     * @param text Texto para desenhar
+     * @param canvas A {@link Canvas} painel de desenho
+     * @param x Posição X do texto
+     * @param y Posição Y do texto
+     * @param paint A {@link Paint} objeto de desenho
+     * @param tamanhoTexto Tamanho do texto
+     * @param color cor do texto
      */
-    public void drawCenteredText(String text, Canvas canvas, int x, int y, Paint paint, int textSize, int color){
+    public void drawCenteredText(String text, Canvas canvas, int x, int y, Paint paint, int tamanhoTexto, int color){
         float old = paint.getTextSize();
         double relation = Math.sqrt(canvas.getWidth() * canvas.getHeight()) / 250;
-        float scaledTextSize = (float) (textSize * relation);
+        float scaledTextSize = (float) (tamanhoTexto * relation);
         paint.setTextSize(scaledTextSize);
         paint.setColor(color);
         paint.setAlpha(currAlpha);

@@ -1,6 +1,6 @@
 package br.com.onuse.freedomdreamers.freedom.hudobjects;
 
-public class TypingText extends AnimatedText {
+public class TypingText extends TextoAnimado {
     private int tick = 0;
     private int wait = 0;
     private int tickDelay;
