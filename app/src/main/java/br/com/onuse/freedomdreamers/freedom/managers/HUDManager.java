@@ -7,8 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
-import br.com.onuse.freedomdreamers.freedom.hudobjects.FadedText;
-import br.com.onuse.freedomdreamers.freedom.hudobjects.ParabolicText;
 import br.com.onuse.freedomdreamers.freedom.hudobjects.TypingText;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
@@ -18,7 +16,7 @@ public class HUDManager {
     public static int altura = 0;
     private static Bitmap play, back, info, start;
     private static ButtonManager buttonManager;
-    private static AnimatedTextManager animatedTextManager;
+    private static TextoAnimadoManager animatedTextManager;
     private static EntityManager entityManager;
     public static int selection = 0;
     public static int infoState = 0;
@@ -31,7 +29,7 @@ public class HUDManager {
         this.altura = CoreManager.altura;
         //inicia novo botaoManager
         buttonManager = new ButtonManager();
-        animatedTextManager = new AnimatedTextManager();
+        animatedTextManager = new TextoAnimadoManager();
         entityManager = new EntityManager();
         // Carrega todos bitmaps de botões necessários
         play = Assets.getBitmapFromMemory("button_play");

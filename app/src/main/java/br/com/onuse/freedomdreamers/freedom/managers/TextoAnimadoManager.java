@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import br.com.onuse.freedomdreamers.freedom.hudobjects.TextoAnimado;
 
-public class AnimatedTextManager {
-    public static ArrayList<TextoAnimado> activeAnimatedTexts = new ArrayList<>();
+public class TextoAnimadoManager {
+    private static ArrayList<TextoAnimado> activeAnimatedTexts = new ArrayList<>();
     public static void addText(TextoAnimado text){
         activeAnimatedTexts.add(text);
     }
@@ -20,12 +20,12 @@ public class AnimatedTextManager {
     }
 
     /**
-     * Called when the game renders.
-     * @param canvas The {@link Canvas} to draw on
-     * @param paint The {@link Paint} object to draw with
+     * Chamado uando o jogo renderiza
+     * @param canvas {@link Canvas} objeto de painel para pintura
+     * @param paint {@link Paint} objeto de pintura
      */
     public void render(Canvas canvas, Paint paint){
-        // Create temp array to prevent concurrent modification exceptions
+        // Cria uma matriz temporária para evitar exceções de modificação simultânea
         ArrayList<TextoAnimado> temp = new ArrayList<>(activeAnimatedTexts);
         for (TextoAnimado s : temp){
             s.render(canvas, paint);
@@ -33,10 +33,10 @@ public class AnimatedTextManager {
     }
 
     /**
-     * Called when the game ticks.
+     * Chamado quando o jogo ticks
      */
     public void tick(){
-        // Create temp array to prevent concurrent modification exceptions
+        // Cria uma matriz temporária para evitar exceções de modificação simultânea
         ArrayList<TextoAnimado> temp = new ArrayList<>(activeAnimatedTexts);
         for (TextoAnimado s : temp) {
             s.tick();

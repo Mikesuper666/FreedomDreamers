@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import br.com.onuse.freedomdreamers.freedom.managers.AnimatedTextManager;
+import br.com.onuse.freedomdreamers.freedom.managers.TextoAnimadoManager;
 import br.com.onuse.freedomdreamers.freedom.managers.HUDManager;
 
 public class TextoAnimado {
@@ -63,7 +63,7 @@ public class TextoAnimado {
      */
     public void play(){
         active = true;
-        AnimatedTextManager.addText(this);
+        TextoAnimadoManager.addText(this);
     }
 
     /**
@@ -71,7 +71,7 @@ public class TextoAnimado {
      */
     public void destroy(){
         active = false;
-        AnimatedTextManager.removeText(this);
+        TextoAnimadoManager.removeText(this);
     }
 
     /**
