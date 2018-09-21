@@ -5,7 +5,6 @@ public class EsmaecimentoTexto extends TextoAnimado{
     private int maxTick;
     private int time;
     /**
-     *
      * @param text Texto para ser desenhado
      * @param ticks tempo de duração na tela
      * @param x posição X do texto

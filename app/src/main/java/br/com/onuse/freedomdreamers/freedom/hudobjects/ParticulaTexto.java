@@ -1,5 +1,4 @@
 package br.com.onuse.freedomdreamers.freedom.hudobjects;
-
 import br.com.onuse.freedomdreamers.freedom.managers.HUDManager;
 
 public class ParticulaTexto extends TextoAnimado{
@@ -9,9 +8,7 @@ public class ParticulaTexto extends TextoAnimado{
     private int vertexX;
     private int vertexY;
     private double initialA;
-
     /**
-     *
      * @param text Texto para ser desenhado
      * @param ticks Tempo de duração da animação
      * @param x posição X do texto
@@ -55,5 +52,4 @@ public class ParticulaTexto extends TextoAnimado{
             tick++;
         }
     }
-
 }
