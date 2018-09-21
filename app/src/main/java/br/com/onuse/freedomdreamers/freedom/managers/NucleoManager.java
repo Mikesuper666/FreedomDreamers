@@ -35,7 +35,7 @@ public class NucleoManager {
         // Inicia HUDmanager, background manager, and SE manager
         // Inicia o gerenciador de HUD, o gerenciador de background e o gerente de SE
         // carrega sound effects
-        state = EstadoTela.TITULO;
+        state = EstadoTela.CUTSCENE;
         hud = new HUDManager();
         background = new Background();
         se = new SEManager();

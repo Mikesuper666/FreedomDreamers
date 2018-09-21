@@ -11,7 +11,7 @@ public class Freedom extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Seta a orientação da tela
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         //Usado para determinar em que tamanho tudo deve ser dimensionado. A única coisa ruim é que ele exige um nível de API 17+ devido a getRealMetrics ()
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getRealMetrics(displaymetrics);

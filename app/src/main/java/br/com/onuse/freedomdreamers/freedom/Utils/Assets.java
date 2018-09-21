@@ -31,18 +31,21 @@ public class Assets {
      * Inicia todos {@link Bitmap} imagems, e sons assets.
      */
     public void init(){
-        // Backgrounds
-        bitmapDb.put("nuvens", getBitmap(context, "backgrounds/intro/nuvens.png", false));
-        bitmapDb.put("intro", getBitmap(context, "backgrounds/intro/intro_a.png", true));
+        //intro cutscene (objetos que faremo parallax)
+        for (int i = 0; i <= 6; i++) {
+            bitmapDb.put("intro_cena_b"+ i, getBitmap(context, "backgrounds/intro/cena_b/intro_"+i+".png"));
+        }
+
+        // imagem Tela preta
+        bitmapDb.put("background_black", getBitmap(context, "backgrounds/black.png"));
     }
     /**
      * Returna {@link Bitmap} objeto do arquivo, escalado de acordo com o tamanho da tela.
      * @param context {@link Context} contexto da classe ue acessa
      * @param filePath caminho do arquivo que será acessado
-     * @param dimensionar (true=redimensiona a imagem com o tamanho da tela)(false=tamanho padrao da imagem)
      * @return A {@link Bitmap}
      */
-    public static Bitmap getBitmap(Context context, String filePath, boolean dimensionar) {
+    public static Bitmap getBitmap(Context context, String filePath) {
         AssetManager assetManager = context.getAssets();
         //Cria um novo input stream, e abre o caminho
         InputStream istr;
@@ -54,8 +57,8 @@ public class Assets {
         } catch (IOException e) {}
 
         // Escala o bitmap para o tamanho proporcional a tela
-        double x = (dimensionar) ? largura :bitmap.getWidth() * largura / 1080;
-        double y = (dimensionar) ? altura : bitmap.getHeight() * altura / 1920;
+        double x = bitmap.getWidth() * largura / 1920;
+        double y = bitmap.getHeight() * altura / 1080;
 
         return Bitmap.createScaledBitmap(bitmap, (int) x, (int) y, true);
     }
@@ -95,6 +98,18 @@ public class Assets {
     public static Bitmap getBitmapFromMemory(String name){
         if (bitmapDb.containsKey(name)){
             return bitmapDb.get(name);
+        }
+        return null;
+    }
+
+    /**
+     * Returns a {@link Bitmap} from memory.
+     * @param name The name of the {@link Bitmap}
+     * @return A {@link Bitmap} rescaled for a fullscren backgrounds
+     */
+    public static Bitmap getBitmapFromMemoryFullscreen(String name){
+        if (bitmapDb.containsKey(name)){
+            return Bitmap.createScaledBitmap(bitmapDb.get(name), largura, altura, true);
         }
         return null;
     }

@@ -19,6 +19,7 @@ public class HUDManager {
     private static ButtonManager buttonManager;
     private static TextoAnimadoManager animatedTextManager;
     private static EntityManager entityManager;
+    private static CutsceneManager cutsceneManager;
     public static int selection = 0;
     private static int infoState = 0;
     public static int hudEndXPositions[] = new int[5];
@@ -32,6 +33,7 @@ public class HUDManager {
         buttonManager = new ButtonManager();
         animatedTextManager = new TextoAnimadoManager();
         entityManager = new EntityManager();
+        cutsceneManager = new CutsceneManager();
         // Carrega todos bitmaps de botões necessários
         play = Assets.getBitmapFromMemory("button_play");
         back = Assets.getBitmapFromMemory("button_back");
@@ -110,6 +112,9 @@ public class HUDManager {
                 break;
             case SHOP:
                 //HUDManager.displayTypingText("Choose a character...", largura / 2, altura / 2, 2, 11, Color.rgb(0,191,255), true);
+                break;
+            case CUTSCENE:
+                cutsceneManager.init();
                 break;
         }
     }
@@ -351,7 +356,10 @@ public class HUDManager {
 
                 }*/
                 break;
-
+            case CUTSCENE:
+                cutsceneManager.ticks();        //chama o coração de cutscene
+                cutsceneManager.render(canvas);
+                break;
 
         }
         // Render all buttons + faded text

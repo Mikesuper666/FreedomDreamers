@@ -35,7 +35,7 @@ public class Background {
      * Lida com elementos em movimento no fundo.
      */
     public void tick(){
-        switch(NucleoManager.state){
+       /* switch(NucleoManager.state){
             // Todos os movimentos para coisas em segundo plano são tratados aqui.
             case CHAR_SELECT:
             case TITULO:
@@ -47,7 +47,7 @@ public class Background {
                     xOff = 0;
                 }
                 break;
-        }
+        }*/
     }
 
     /**
@@ -92,7 +92,7 @@ public class Background {
      */
     public void render(Canvas canvas, Paint paint){
         // Desenhe o quadro atual e atualize o animador com o tempo
-        if (background.size() > 0){
+      /*  if (background.size() > 0){
             canvas.drawBitmap(animate.sprite, 0, 0, paint);
             animate.update(System.currentTimeMillis());
         }
@@ -107,7 +107,7 @@ public class Background {
                 break;
             case CHAR_SELECT:
                 break;
-        }
+        }*/
     }
 
     /**
@@ -118,7 +118,7 @@ public class Background {
      * @param speed speed moving image
      * @param infite determines if infinite scroll
      */
-    public double offsetScrolling(Canvas canvas, Bitmap image, double offset, int speed, boolean infite){
+    public double offsetScrollingInverted(Canvas canvas, Bitmap image, double offset, int speed, boolean infite){
         offset -= HUDManager.getSpeed(NucleoManager.largura, speed);
         if (offset <- NucleoManager.largura){
             offset = 0;
@@ -130,7 +130,7 @@ public class Background {
         return offset;
     }
 
-    public double offsetScrollingInverted(Canvas canvas, Bitmap image, double offset, int speed, boolean infite){
+    public double offsetScrolling(Canvas canvas, Bitmap image, double offset, int speed, boolean infite){
         offset += HUDManager.getSpeed(NucleoManager.largura, speed);
         if (offset > NucleoManager.largura){
             offset = 0;
