@@ -3,22 +3,22 @@
     <!--
     Este XML organiza os textos da cutscene em ordem
     TEXT # POSX # POSY # DURATION # FONT SIZE
-    1 text to display (string)
-    2 position X (int)
-    3 position Y (int)
-    4 duration to display on screen 100 (1 second)
-    5 text size (size min~max depends on yours font example: min 9 - max 32)
+    0 text to display (string)
+    1 text size (size min~max depends on yours font example: min 9 - max 32)
+    2 duração do texto, tempo mostrado em tela
     -->
     <string-array name="cutscene_intro">
-        <item>A game engine 2018\n by Maico Ribeiro#2#550#200#15</item>
-        <item>Lançado em 1996\n by SQUARESOFT#2#550#200#15</item>>
-        <item>The king of a forgotten kingdom sent their wizards \n to build a huge labyrinth#2#250#200#15</item>
-        <item>with the goal of create a challenge for  \n their children#2#250#200#15</item>
-        <item>thus choosing a king from among they.#2#250#200#15</item>
-        <item>The labyrinth was designed to judge the physical \n and of the candidate to the king. \n The prize: the kingdom.#2#250#200#15</item>
-        <item>For the losers to death..#2#250#200#15</item>
-        <item>Many of his children perished in the labyrinth and \n as punishment  the gods held the whole \n kingdom capital within a bottle#2#250#200#15</item>
-        <item>and put it inside the labyrinth. \n Now the characters must#2#250#200#15</item>
-        <item>find an object that is inside the city#2#250#200#15</item>
+        <item>A game engine 2018 \nby Maico Ribeiro#15#100</item>
+        <item>Lançado em 1996 \nby SQUARESOFT#15#100</item>
+        <item>The king \n of a forgotten kingdom sent their\n wizards to build a huge labyrinth§#14#200</item>
+        <item>with the goal of create a \n challenge for their children§#14#200</item>
+        <item>thus choosing a king from among they.#14#200</item>
+        <item>The labyrinth was designed \n to judge the physical and of the candidate to the king.#14#200</item>
+        <item>The prize: the kingdom.\nFor the losers to death.#14#200</item>
+        <item>Many of his children perished in the labyrinth and \n as punishment  the gods held the whole \n kingdom capital within a bottle#14#200</item>
+        <item>and put it inside the labyrinth. \n Now the characters must#14#200</item>
+        <item>find an object that is inside the city#14#200</item>
     </string-array>
+
+
 </resources>

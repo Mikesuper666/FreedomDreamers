@@ -82,8 +82,8 @@ public class HUDManager {
         switch (novoEstado){
 
             case TITULO:
-                HUDManager.displayTypingText("espere... § contenue...", largura / 2, altura / 2, 8, 11, Color.rgb(0,191,255), true, 200);
-                HUDManager.displayTypingText("Choose a § character...", largura / 3, altura / 3, 10, 11, Color.rgb(0,191,255), false, 100);
+                HUDManager.displayTypingText("Este texto precis§\nteste de performance§", largura / 2, altura / 2, 10, 11, Color.rgb(0,191,255), true, 100);
+                HUDManager.displayTypingText("Este texto precisa iniciar pelo lado indicado \nContorle de paragrafo \n character nada ver...§", largura / 3, altura / 3, 3, 11, Color.rgb(0,191,255), false, 100);
                 displayFadeMessage("Este texto aparece e desaparece",largura / 4, altura / 4, 200, 11, Color.BLUE);
                 // Reseta o info state
                 infoState = 0;

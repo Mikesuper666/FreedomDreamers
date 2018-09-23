@@ -3,22 +3,22 @@
     <!--
     This XML organizes the text of the cutscene
     TEXT # POSX # POSY # DURATION # FONT SIZE
-    1 text to display (string)
-    2 position y (int)
-    3 position x (int)
-    4 duration to display on screen 100 (1 second)
-    5 text size (size min~max depends on yours font example: min 9 - max 32)
+    0 tipo de texto (o efeito de texto que será apresentado na tela se FADE ou Typing)
+    1 position y (int)
+    2 position x (int)
+    3 imagem de backgrond (int)
+    4 pausa o texto no modo tiping (segue normal apops o dealay)
 -->
-    <integer-array name="transitions">
-        <item>0</item>
-        <item>0</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-    </integer-array>
+    <string-array name="transition_intro">
+        <item>0#2#550#0#10</item>
+        <item>0#2#550#0#10</item>
+        <item>1#2#2#1#2</item>
+        <item>1#2#2#2#2</item>
+        <item>1#2#200#3#2</item>
+        <item>1#2#200#4#2</item>
+        <item>2#2#200#5#2444</item>
+        <item>1#2#200#6#200</item>
+        <item>1#2#200#7#200</item>
+        <item>1#2#200#8#200</item>
+    </string-array>
 </resources>

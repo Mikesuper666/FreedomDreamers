@@ -1,5 +1,7 @@
 package br.com.onuse.freedomdreamers.freedom.hudobjects;
 
+import android.util.Log;
+
 public class DigitandoTexto extends TextoAnimado {
     private int tick = 0;
     private int wait = 0;
@@ -16,10 +18,10 @@ public class DigitandoTexto extends TextoAnimado {
      * @param tickDelay tempo de espera em cada caractere
      * @param x posição X do texto
      * @param y posição Y do texto
-     * @param tamanhoTexto tamanho do texto
+     * @param tamanhoTexto tamanho do texto (minimo e maximo depende da fonte)
      * @param color cor Texto
      * @param centralizado centraliza o texto (true=sim false=não)
-     * @param pause pausa de intervalo maior programado '§' << deve ser inserido da string {@param text} para ser ativado 0 a 1000 'recomendado'
+     * @param pause pausa de intervalo maior prog*ramado '§' << deve ser inserido da string {@param text} para ser ativado 0 a 1000 'recomendado'-
      */
     public DigitandoTexto(String text, int x, int y, int tickDelay, int tamanhoTexto, int color, boolean centralizado, int pause){
         super("", x, y, tamanhoTexto, color, 255, centralizado);
@@ -65,6 +67,8 @@ public class DigitandoTexto extends TextoAnimado {
                 tick++;
             }
         }
+        if(!typing)
+            super.destroy();
     }
     public boolean finished(){
         return typing;

@@ -6,6 +6,9 @@ public class TextList {
     private int yPosition;          //y pos
     private int duration;           //duração
     private int textSize;           //depende da fonte
+    private int imagem;             //Imagem que será mostrada em background
+    private int tipoTexto;          //texto
+    private int pausa;          //pausa o texto para o modo typing
 
     public  TextList(){}
 
@@ -47,5 +50,29 @@ public class TextList {
 
     public void setTextSize(int textSize) {
         this.textSize = textSize;
+    }
+
+    public int getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(int imagem) {
+        this.imagem = imagem;
+    }
+
+    public int getTipoTexto() {
+        return tipoTexto;
+    }
+
+    public void setTipoTexto(int tipoTexto) {
+        this.tipoTexto = tipoTexto;
+    }
+
+    public int getPausa() {
+        return pausa;
+    }
+
+    public void setPausa(int pausa) {
+        this.pausa = pausa;
     }
 }
