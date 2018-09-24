@@ -18,7 +18,7 @@ public class HUDManager {
     private static Bitmap play, back, info, start;
     private static ButtonManager buttonManager;
     private static TextoAnimadoManager animatedTextManager;
-    private static EntityManager entityManager;
+    private static EntidadeManager entidadeManager;
     private static CutsceneManager cutsceneManager;
     public static int selection = 0;
     private static int infoState = 0;
@@ -32,13 +32,13 @@ public class HUDManager {
         //inicia novo botaoManager
         buttonManager = new ButtonManager();
         animatedTextManager = new TextoAnimadoManager();
-        entityManager = new EntityManager();
+        entidadeManager = new EntidadeManager();
         cutsceneManager = new CutsceneManager();
         // Carrega todos bitmaps de botões necessários
-        play = Assets.getBitmapFromMemory("button_play");
-        back = Assets.getBitmapFromMemory("button_back");
-        info = Assets.getBitmapFromMemory("button_info");
-        start = Assets.getBitmapFromMemory("button_start");
+       // play = Assets.getBitmapFromMemory("button_play");
+       // back = Assets.getBitmapFromMemory("button_back");
+      //  info = Assets.getBitmapFromMemory("button_info");
+       // start = Assets.getBitmapFromMemory("button_start");
         onStateChange(EstadoTela.TITULO, EstadoTela.TITULO);
     }
 
@@ -47,7 +47,7 @@ public class HUDManager {
      */
     public void tick(){
         //Tick botãoManager + faded text
-       // entityManager.tick();
+        entidadeManager.tick();
        // buttonManager.tick();
         animatedTextManager.tick();
     }
@@ -76,7 +76,7 @@ public class HUDManager {
     public static void onStateChange(EstadoTela velhoEstado, EstadoTela novoEstado){
         // Limpa todos os botões não importa o que
         //buttonManager.clearButtons();
-       // entityManager.clear();
+        entidadeManager.clear();
         animatedTextManager.clear();
         //Dependendo do estado de tela de cada estado
         switch (novoEstado){
@@ -364,7 +364,7 @@ public class HUDManager {
         }
         // Render all buttons + faded text
       //  buttonManager.render(canvas, paint);
-       // entityManager.render(canvas, paint);
+        entidadeManager.render(canvas, paint);
         animatedTextManager.render(canvas, paint);
     }
 

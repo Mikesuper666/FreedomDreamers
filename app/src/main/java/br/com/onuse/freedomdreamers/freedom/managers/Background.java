@@ -12,8 +12,16 @@ import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 public class Background {
     private static ArrayList<Bitmap> background;
     private Bitmap clouds;
-    private static Animator animate;
+    //private static Animator animate;
     private static double xOff = 0;
+    public boolean shaking = false, fadingIn = false, fadingOut = false, alive = false;
+    private int leftTick = 0;
+    private int rightTick = 0;
+    private int fadeTick = 0;
+    private int shakeTick = 0;
+    private int maxShakeTicks = 0;
+    private int maxFadeTicks = 0;
+    public int currAlpha = 0;
     Background(){
         // Carrega os assets da memoria
         clouds = Assets.getBitmapFromMemory("nuvens");
@@ -21,12 +29,12 @@ public class Background {
         background = new ArrayList<>();
         background.add(Assets.getBitmapFromMemory("intro"));
         background.add(Assets.getBitmapFromMemory("mountains"));
-        animate = new Animator(background);
+        //animate = new Animator(background);
         // Este é o padrão inicializado pela primeira vez, supondo que seja iniciado na tela de título.
         // Essa velocidade será alterada em onStateChange ()
-        animate.setSpeed(450);
-        animate.play();
-        animate.update(System.currentTimeMillis());
+        //animate.setSpeed(450);
+        //animate.play();
+        //animate.update(System.currentTimeMillis());
         onStateChange(EstadoTela.TITULO, EstadoTela.TITULO);
     }
 
@@ -48,6 +56,33 @@ public class Background {
                 }
                 break;
         }*/
+        if (fadingOut){
+            if (fadeTick < maxFadeTicks){
+                // Inc alpha uniformemente
+                int amount = 255 / maxFadeTicks + 1;
+                fadeTick++;
+
+                if (currAlpha - amount > 0){
+                    currAlpha -= amount;
+                }else{
+                    currAlpha = 0;
+                }
+            }else{
+                // Máximo de ticks atingidos, redefinir
+                fadingOut = false;
+                fadeTick = 0;
+                maxFadeTicks = 0;
+            }
+        }
+    }
+
+    /**
+     * Efeito de esmaecimento da entidade
+     * @param ticks quantidade de ticks determina o tempo de esmaecimento
+     */
+    public void fadeOut(int ticks){
+        fadingOut = true;
+        maxFadeTicks = ticks;
     }
 
     /**
@@ -82,7 +117,7 @@ public class Background {
                 break;
 
         }
-        animate.replace(background);
+        //animate.replace(background);
     }
 
     /**

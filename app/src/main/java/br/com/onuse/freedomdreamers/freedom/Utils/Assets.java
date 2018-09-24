@@ -32,7 +32,7 @@ public class Assets {
      */
     public void init(){
         //intro cutscene (objetos que faremo parallax)
-        for (int i = 0; i <= 6; i++) {
+        for (int i = 0; i <= 5; i++) {
             bitmapDb.put("intro_cena_b"+ i, getBitmap(context, "backgrounds/intro/cena_b/intro_"+i+".png"));
         }
 

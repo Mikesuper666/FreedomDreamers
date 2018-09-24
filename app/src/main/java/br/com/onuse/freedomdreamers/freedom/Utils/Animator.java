@@ -50,7 +50,16 @@ public class Animator {
     }
 
     /**
+     * Este metodo retorna o frame na posição oque foi iniciado
+     ** @param frame posição do frame que será retornado
+     */
+    public Bitmap Frame(int frame){
+        return sprite = frames.get(frame);
+    }
+
+    /**
      * Substitui o conjunto atual de quadros por um novo conjunto.
+     * Ou seja um sprite por outros
      * @param frames novo set de frames
      */
     public void replace(ArrayList<Bitmap> frames){

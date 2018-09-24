@@ -12,7 +12,7 @@ public class Entidade {
         public int hp, maxHp, atk;
         public double x, y, oldX;
         public String name;
-        public EAState state = EAState.IDLE;
+        public EAState state = EAState.ESPERA;
         public int currAlpha = 0;
         public boolean shaking = false, fadingIn = false, fadingOut = false, alive = false;
         private int leftTick = 0;

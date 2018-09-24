@@ -5,7 +5,8 @@
     TEXT # POSX # POSY # DURATION # FONT SIZE
     0 text to display (string)
     1 text size (size min~max depends on yours font example: min 9 - max 32)
-    2 duração do texto, tempo mostrado em tela
+    4 pausa o texto no modo tiping (segue normal apops o dealay)
+    para o modo pausa funcionar precisa ter na string '§' para indentificar onde a pausa será aplicada!
     -->
     <string-array name="cutscene_intro">
         <!--item>A game engine 2018 \nby Maico Ribeiro#15#100</item>

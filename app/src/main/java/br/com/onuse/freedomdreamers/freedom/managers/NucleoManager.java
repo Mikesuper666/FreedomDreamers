@@ -74,7 +74,7 @@ public class NucleoManager {
         // Tick todos (seja bomba as threads nesta ordem de primeiro para segundo)
         background.tick();
         hud.tick();
-       /// se.tick();
+        se.tick();
      //   gm.tick();
     }
 
@@ -99,6 +99,6 @@ public class NucleoManager {
 
         background.render(canvas, paint);
         hud.render(canvas, paint);
-      //  se.render(canvas, paint);
+        se.render(canvas, paint);
     }
 }

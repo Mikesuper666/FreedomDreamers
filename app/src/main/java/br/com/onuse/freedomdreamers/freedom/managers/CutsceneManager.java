@@ -1,6 +1,5 @@
 package br.com.onuse.freedomdreamers.freedom.managers;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
@@ -8,8 +7,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import br.com.onuse.freedomdreamers.R;
+import br.com.onuse.freedomdreamers.freedom.entidades.EAState;
 import br.com.onuse.freedomdreamers.freedom.entidades.Entidade;
-import br.com.onuse.freedomdreamers.freedom.entidades.LivroIntro;
+import br.com.onuse.freedomdreamers.freedom.entidades.intro.LivroIntro;
 import br.com.onuse.freedomdreamers.freedom.models.TextList;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
@@ -20,7 +20,7 @@ public class CutsceneManager {
     private int numberText, ticks, tempoDuracao;
     private ArrayList<TextList> textList;
     private Background background;
-    private Bitmap[] bgs = new Bitmap[7];
+   // private Bitmap[] bgs = new Bitmap[7];
     private double[] xOffBG = new double[7];
     private static Entidade atualEntidade = null;
 
@@ -32,13 +32,13 @@ public class CutsceneManager {
         textList = new ArrayList<>(TextListManager.ManageText(introTexts,transition)); //fills the list with the content kept in xml
         background = new Background();
         //set images to memory
-        for (int i = 0; i <= 6; i++) {
+       /* for (int i = 0; i <= 6; i++) {
             bgs[i] = Assets.getBitmapFromMemoryFullscreen("intro_cena_b"+i);
-        }
+        }*/
     }
 
     public void init(){
-        iniciaEntidade(new LivroIntro(0,0));
+        iniciaEntidade(new LivroIntro(largura / 2,altura / 2));
     }
 
     /**
@@ -48,7 +48,7 @@ public class CutsceneManager {
     private static void iniciaEntidade(Entidade entidade){
         // Inicia uma nova entidade
         atualEntidade = entidade;
-        atualEntidade.fadeIn(50);
+        atualEntidade.fadeIn(100);
     }
     /*
      * ticks para manipular a logica de texto e movimentos da tela
@@ -70,7 +70,7 @@ public class CutsceneManager {
                             textList.get(numberText).getyPosition(),
                             textList.get(numberText).getPausa(),                                   //pausa entre cada letra
                             textList.get(numberText).getTextSize(),
-                            Color.BLACK,
+                            Color.WHITE,
                             false,
                             textList.get(numberText).getDuration());                               //pausa o texto após o digitar
                     tempoDuracao = (textList.get(numberText).getTextToDisplay().replace(" ","").length() * textList.get(numberText).getPausa())
@@ -96,13 +96,14 @@ public class CutsceneManager {
     }
 
     public void render(Canvas canvas) {
-       if (numberText < textList.size()) {
-            if (textList.get(numberText).getImagem() != 0){
-                //xOffBG[numberText] = background.offsetScrolling(canvas, bgs[]);
-                //xOffBG[numberText] = ImageManager.processarImagem(canvas, bgs[numberText],textList.get(numberText), background);
-            }else{
-                canvas.drawBitmap(Objects.requireNonNull(Assets.getBitmapFromMemoryFullscreen("background_black")), 0, 0, null);
-            }
+
+        if(textList.get(numberText).getImagem() == 1) {
+            canvas.drawBitmap(Objects.requireNonNull(Assets.getBitmapFromMemoryFullscreen("background_black")), 0, 0, null);
+            atualEntidade.setState(EAState.ESPERA);
+        }else if (textList.get(numberText).getImagem() == 2)
+            atualEntidade.setState(EAState.ATAQUE);
+        else if(textList.get(numberText).getImagem() == 3) {
+            atualEntidade.setState(EAState.DANO);
         }
     }
 }
