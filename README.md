@@ -3,7 +3,8 @@ Freedom Dreamers é uma engenharia reversa de um não tão famoso jogo textual l
 # Recursos até agora
 * Tela de introdução
 * Mecânica de textos animados
-# Recursa para adicionar
+* Metodo de gerênciamento de sprites
+# Recursos para adicionar
 * Sprites escalonados
 * Músicas
 * Traduções dos textos originais
