@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import br.com.onuse.freedomdreamers.R;
+import br.com.onuse.freedomdreamers.freedom.entidades.Entidade;
+import br.com.onuse.freedomdreamers.freedom.entidades.LivroIntro;
 import br.com.onuse.freedomdreamers.freedom.models.TextList;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
@@ -15,11 +17,12 @@ public class CutsceneManager {
     private int largura;
     private int altura;
     private boolean showText = true;
-    private int numberText, ticks;
+    private int numberText, ticks, tempoDuracao;
     private ArrayList<TextList> textList;
     private Background background;
     private Bitmap[] bgs = new Bitmap[7];
     private double[] xOffBG = new double[7];
+    private static Entidade atualEntidade = null;
 
     CutsceneManager(){
         largura = HUDManager.largura;
@@ -35,12 +38,21 @@ public class CutsceneManager {
     }
 
     public void init(){
-
+        iniciaEntidade(new LivroIntro(0,0));
     }
 
+    /**
+     * Inicia uma nova entidade {@link Entidade}
+     * @param entidade {@link Entidade} objeto
+     */
+    private static void iniciaEntidade(Entidade entidade){
+        // Inicia uma nova entidade
+        atualEntidade = entidade;
+        atualEntidade.fadeIn(50);
+    }
     /*
-     *ticks manipulates the logic of texts and movements displayed on the screen,
-     * updated their respective positions and states
+     * ticks para manipular a logica de texto e movimentos da tela
+     * atualiza os repectivas posições e estados
      */
     public void ticks() {
         ticks++;
@@ -53,26 +65,26 @@ public class CutsceneManager {
                             (textList.get(numberText).getDuration() - 60),                      //duration (-60 to compensate for fading)
                             textList.get(numberText).getTextSize(), Color.WHITE);               //color
                 }else{
-                    HUDManager.displayTypingText(textList.get(numberText).getTextToDisplay(),  //text
-                            largura / textList.get(numberText).getxPosition(),              //xposition
-                            altura / textList.get(numberText).getyPosition(),
-                            textList.get(numberText).getPausa(),                                //pausa entre cada letra
+                    HUDManager.displayTypingText(textList.get(numberText).getTextToDisplay(),      //text
+                            textList.get(numberText).getxPosition(),                               //xposition
+                            textList.get(numberText).getyPosition(),
+                            textList.get(numberText).getPausa(),                                   //pausa entre cada letra
                             textList.get(numberText).getTextSize(),
                             Color.BLACK,
                             false,
                             textList.get(numberText).getDuration());                               //pausa o texto após o digitar
+                    tempoDuracao = (textList.get(numberText).getTextToDisplay().replace(" ","").length() * textList.get(numberText).getPausa())
+                            + textList.get(numberText).getDuration() * textList.get(numberText).getTextToDisplay().split("§").length;
                 }
                 showText = false;
             }
 
             if(textList.get(numberText).getTipoTexto() == 0 && ticks == textList.get(numberText).getDuration()){
                 ticksContador();
-            }else if(textList.get(numberText).getTipoTexto() == 1 && ticks == (textList.get(numberText).getTextToDisplay().length()
-                    * textList.get(numberText).getPausa() + textList.get(numberText).getDuration())){
+            }else if(textList.get(numberText).getTipoTexto() == 1 && ticks == tempoDuracao) {
                 ticksContador();
             }
         }else {
-            ClearText();//free memory
             SEManager.playEffect(SEManager.Effect.FADE_TRANSITION, EstadoTela.TITULO);//goto title screen
         }
     }
@@ -81,7 +93,6 @@ public class CutsceneManager {
         showText = true;
         ticks = 0;
         numberText++;
-ClearText();
     }
 
     public void render(Canvas canvas) {
@@ -94,7 +105,4 @@ ClearText();
             }
         }
     }
-
-
-    private void ClearText(){TextoAnimadoManager.clear();}
 }

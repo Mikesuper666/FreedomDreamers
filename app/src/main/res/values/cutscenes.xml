@@ -8,16 +8,30 @@
     2 duração do texto, tempo mostrado em tela
     -->
     <string-array name="cutscene_intro">
-        <item>A game engine 2018 \nby Maico Ribeiro#15#100</item>
-        <item>Lançado em 1996 \nby SQUARESOFT#15#100</item>
-        <item>The king \n of a forgotten kingdom sent their\n wizards to build a huge labyrinth§#14#200</item>
-        <item>with the goal of create a \n challenge for their children§#14#200</item>
-        <item>thus choosing a king from among they.#14#200</item>
-        <item>The labyrinth was designed \n to judge the physical and of the candidate to the king.#14#200</item>
-        <item>The prize: the kingdom.\nFor the losers to death.#14#200</item>
-        <item>Many of his children perished in the labyrinth and \n as punishment  the gods held the whole \n kingdom capital within a bottle#14#200</item>
-        <item>and put it inside the labyrinth. \n Now the characters must#14#200</item>
-        <item>find an object that is inside the city#14#200</item>
+        <!--item>A game engine 2018 \nby Maico Ribeiro#15#100</item>
+        <item>1996 SQUARESOFT#15#100</item-->
+        <item>It was then that I opened the notebook my mother had
+            \ngiven me…§ she said she found it while cleaning out the
+            \ncloset.§
+            \nCrumbling and covered with dust, it turned out to be the
+            \ndiary of my long-lost grandfather.§#10#200</item>
+        <item>“…Do you still remember…?§
+            \nHow we first met, and all our adventures since…§
+            \nIt all seems like such a dream nowadays…§ You were
+            \na piece of a star that fell from the sky.§#10#200</item>
+        <item>Whenever I want to return to those days long gone,§
+            \n§I close my eyes and whisper your name into the evening§
+            \nsky…§\n
+            \n……Kid…§\n
+            \n………Kid…§#10#200</item>
+        <item>§…Kid§\n
+            \n……Hey, Kid!§#10#200</item>
+        <item>“Are you ready, Kid?§
+            \nI know you’re anxious, but stay on your toes.”§
+            \n“Yeah, likewise, mate! Mess up, and I’m leavin’ ya behind!”§#10#200</item>
+        <item>“C’mon, Magil,§
+            \nThat bastard Lynx is gonna get what he deserves!§
+            \nSay yer prayers… Not that it’ll do any good!”§#10#200</item>
     </string-array>
 
 

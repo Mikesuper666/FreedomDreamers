@@ -8,7 +8,7 @@ public class TextList {
     private int textSize;           //depende da fonte
     private int imagem;             //Imagem que será mostrada em background
     private int tipoTexto;          //texto
-    private int pausa;          //pausa o texto para o modo typing
+    private int pausa;              //pausa o texto para o modo typing
 
     public  TextList(){}
 

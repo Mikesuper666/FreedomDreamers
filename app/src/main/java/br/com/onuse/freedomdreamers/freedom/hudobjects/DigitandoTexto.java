@@ -1,11 +1,9 @@
 package br.com.onuse.freedomdreamers.freedom.hudobjects;
 
-import android.util.Log;
-
 public class DigitandoTexto extends TextoAnimado {
     private int tick = 0;
     private int wait = 0;
-    private int pause = 0;
+    private int pause;
     private int tickDelay;
     private boolean typing = true;
     private String currentText = "";
@@ -45,7 +43,7 @@ public class DigitandoTexto extends TextoAnimado {
                 // Digite next char a cada intervalo de acordo com o atraso do tick
                 if (tick % tickDelay == 0){
                     if (currentIndex <= text.length() - 1){
-                        // Pular espaçoes brancos
+                        // Pular espaços brancos
                         while (text.charAt(currentIndex) == ' '){
                             currentText += " ";
                             currentIndex++;
@@ -65,10 +63,10 @@ public class DigitandoTexto extends TextoAnimado {
                     }
                 }
                 tick++;
+            }else {
+                super.destroy();
             }
         }
-        if(!typing)
-            super.destroy();
     }
     public boolean finished(){
         return typing;

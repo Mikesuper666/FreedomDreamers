@@ -47,7 +47,7 @@ public class TextoAnimado {
         int adicionar = 0;
             for (String textSegment : text.split("\n")){
                     densenhaTexto(textSegment, canvas, (int) x, (int) y + adicionar, paint, tamanhoTexto, color);//                    HUDManager.drawText(textSegment, canvas, (int) x, (int) y, paint, tamanhoTexto, color);
-                adicionar += tamanhoTexto * 5.5;
+                    adicionar += tamanhoTexto * 5.5;
                 }
     }
     /**
