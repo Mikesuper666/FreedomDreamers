@@ -3,6 +3,7 @@ package br.com.onuse.freedomdreamers.freedom.entidades;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import br.com.onuse.freedomdreamers.freedom.entidades.intro.CUTEstate;
 import br.com.onuse.freedomdreamers.freedom.managers.EntidadeManager;
 import br.com.onuse.freedomdreamers.freedom.managers.HUDManager;
 import br.com.onuse.freedomdreamers.freedom.managers.NucleoManager;
@@ -12,7 +13,7 @@ public class Entidade {
         public int hp, maxHp, atk;
         public double x, y, oldX;
         public String name;
-        public EAState state = EAState.ESPERA;
+        public CUTEstate state = CUTEstate.ESPERA;
         public int currAlpha = 0;
         public boolean shaking = false, fadingIn = false, fadingOut = false, alive = false;
         private int leftTick = 0;
@@ -51,9 +52,9 @@ public class Entidade {
 
         /**
          * Seta a entidade para o novo estado de animação
-         * @param newState The new {@link EAState} to switch to
+         * @param newState The new {@link CUTEstate} to switch to
          */
-        public void setState(EAState newState){
+        public void setState(CUTEstate newState){
             state = newState;
         }
 
@@ -67,9 +68,9 @@ public class Entidade {
 
         /**
          * Retorna o atual estado de animação.
-         * @return {@link EAState}
+         * @return {@link CUTEstate}
          */
-        public EAState getState(){
+        public CUTEstate getState(){
             return state;
         }
 

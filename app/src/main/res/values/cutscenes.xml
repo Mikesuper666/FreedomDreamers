@@ -15,18 +15,20 @@
             \ngiven me…§ she said she found it while cleaning out the
             \ncloset.§
             \nCrumbling and covered with dust, it turned out to be the
-            \ndiary of my long-lost grandfather.§#10#200</item>
+            \ndiary of my long-lost grandfather.§#10#50</item>
+        <item>$#0#100</item><!--PAUSA TEXTO-->
         <item>“…Do you still remember…?§
             \nHow we first met, and all our adventures since…§
             \nIt all seems like such a dream nowadays…§ You were
-            \na piece of a star that fell from the sky.§#10#200</item>
+            \na piece of a star that fell from the sky.§#10#50</item>
         <item>Whenever I want to return to those days long gone,§
-            \n§I close my eyes and whisper your name into the evening§
-            \nsky…§\n
-            \n……Kid…§\n
-            \n………Kid…§#10#200</item>
+            \nI close my eyes and whisper your name into the evening§
+            \nsky…§
+            \n…Kid…§\n
+            \n……Kid…§#10#50</item>
+        <item>$#0#50</item><!--PAUSA TEXTO-->
         <item>§…Kid§\n
-            \n……Hey, Kid!§#10#200</item>
+            \n……Hey, Kid!§#10#50</item>
         <item>“Are you ready, Kid?§
             \nI know you’re anxious, but stay on your toes.”§
             \n“Yeah, likewise, mate! Mess up, and I’m leavin’ ya behind!”§#10#200</item>
@@ -34,6 +36,4 @@
             \nThat bastard Lynx is gonna get what he deserves!§
             \nSay yer prayers… Not that it’ll do any good!”§#10#200</item>
     </string-array>
-
-
 </resources>

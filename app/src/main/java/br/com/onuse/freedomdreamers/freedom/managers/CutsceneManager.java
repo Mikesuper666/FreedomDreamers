@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import br.com.onuse.freedomdreamers.R;
-import br.com.onuse.freedomdreamers.freedom.entidades.EAState;
+import br.com.onuse.freedomdreamers.freedom.entidades.intro.CUTEstate;
 import br.com.onuse.freedomdreamers.freedom.entidades.Entidade;
 import br.com.onuse.freedomdreamers.freedom.entidades.intro.LivroIntro;
 import br.com.onuse.freedomdreamers.freedom.models.TextList;
@@ -19,9 +19,9 @@ public class CutsceneManager {
     private boolean showText = true;
     private int numberText, ticks, tempoDuracao;
     private ArrayList<TextList> textList;
-    private Background background;
+    //private Background background;
    // private Bitmap[] bgs = new Bitmap[7];
-    private double[] xOffBG = new double[7];
+    //private double[] xOffBG = new double[7];
     private static Entidade atualEntidade = null;
 
     CutsceneManager(){
@@ -30,7 +30,7 @@ public class CutsceneManager {
         String[] transition = NucleoManager.context.getResources().getStringArray(R.array.transition_intro);//get array from xml
         String[] introTexts = NucleoManager.context.getResources().getStringArray(R.array.cutscene_intro);//get array from xml
         textList = new ArrayList<>(TextListManager.ManageText(introTexts,transition)); //fills the list with the content kept in xml
-        background = new Background();
+      //  background = new Background();
         //set images to memory
        /* for (int i = 0; i <= 6; i++) {
             bgs[i] = Assets.getBitmapFromMemoryFullscreen("intro_cena_b"+i);
@@ -48,7 +48,6 @@ public class CutsceneManager {
     private static void iniciaEntidade(Entidade entidade){
         // Inicia uma nova entidade
         atualEntidade = entidade;
-        atualEntidade.fadeIn(100);
     }
     /*
      * ticks para manipular a logica de texto e movimentos da tela
@@ -97,13 +96,17 @@ public class CutsceneManager {
 
     public void render(Canvas canvas) {
 
-        if(textList.get(numberText).getImagem() == 1) {
-            canvas.drawBitmap(Objects.requireNonNull(Assets.getBitmapFromMemoryFullscreen("background_black")), 0, 0, null);
-            atualEntidade.setState(EAState.ESPERA);
-        }else if (textList.get(numberText).getImagem() == 2)
-            atualEntidade.setState(EAState.ATAQUE);
-        else if(textList.get(numberText).getImagem() == 3) {
-            atualEntidade.setState(EAState.DANO);
-        }
+        if (textList.get(numberText).getImagem() == 1)
+           atualEntidade.setState(CUTEstate.ESPERA);
+        else if(textList.get(numberText).getImagem() == 2)
+            atualEntidade.setState(CUTEstate.MOSTRANDO);
+        else if (textList.get(numberText).getImagem() == 3)
+            atualEntidade.setState(CUTEstate.ABRINDO_LIVRO);
+        else if(textList.get(numberText).getImagem() == 4)
+            atualEntidade.setState(CUTEstate.SUMINDO_CENARIO);
+        else if(textList.get(numberText).getImagem() == 5)
+            atualEntidade.setState(CUTEstate.ZOOM);
+
+        canvas.drawBitmap(Objects.requireNonNull(Assets.getBitmapFromMemoryFullscreen("background_black")), 0, 0, null);
     }
 }

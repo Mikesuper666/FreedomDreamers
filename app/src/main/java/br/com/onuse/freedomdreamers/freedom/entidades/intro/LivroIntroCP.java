@@ -6,7 +6,6 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 
-import br.com.onuse.freedomdreamers.freedom.entidades.EAState;
 import br.com.onuse.freedomdreamers.freedom.entidades.Entidade;
 import br.com.onuse.freedomdreamers.freedom.utils.Animator;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
@@ -48,16 +47,16 @@ public class LivroIntroCP extends Entidade {
      * {@inheritDoc}
      */
     @Override
-    public void setState(EAState newState){
+    public void setState(CUTEstate newState){
         super.state = newState;
         switch(newState){
             case ESPERA:
                 currentSprite = sprites.get(0);
                 break;
-            case ATAQUE:
+            case MOSTRANDO:
 
                 break;
-            case DANO:
+            case SUMINDO_CENARIO:
                 //super.fadeOut(100);
 
                 break;
@@ -75,7 +74,7 @@ public class LivroIntroCP extends Entidade {
             case ESPERA:
                 drawCenteredBitmap(currentSprite, canvas, paint, (int) super.x, (int) super.y);
                 break;
-            case ATAQUE:
+            case ABRINDO_LIVRO:
                 drawCenteredBitmap(animator.sprite, canvas, paint, (int) super.x, (int) super.y);
                 // Destroy this entity if the animation is done
                 if (animator.isDoneAnimation()){
@@ -83,7 +82,7 @@ public class LivroIntroCP extends Entidade {
                 }
                 animator.update(System.currentTimeMillis());
             break;
-            case DANO:
+            case ZOOM:
                /* drawCenteredBitmap(animator.Frame(4), canvas, paint, (int) super.x, (int) super.y);
                 paint.setAlpha(oldAlpha);
                 drawCenteredBitmap(animator.Frame(5), canvas, paint, (int) super.x, (int) super.y);

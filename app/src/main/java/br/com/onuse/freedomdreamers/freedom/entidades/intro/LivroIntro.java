@@ -7,25 +7,26 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import br.com.onuse.freedomdreamers.freedom.entidades.EAState;
 import br.com.onuse.freedomdreamers.freedom.entidades.Entidade;
 import br.com.onuse.freedomdreamers.freedom.utils.Animator;
 import br.com.onuse.freedomdreamers.freedom.utils.Assets;
 
 public class LivroIntro extends Entidade {
-    private Bitmap currentSprite;
+    private Bitmap zoomObject;
     private Animator animator;
-    private float x = 1, y = 1;
+    private float xScale = 1, yScale = 1;
+    //inicia a escala da matriz
+    private Matrix scaleMatrix = new Matrix();
     /**
      * @param x Posição X do objeto
      * @param y Posição Y do objeto
      */
     public LivroIntro(int x, int y){
-        super("LivroIntro", 0, 0, x, y, 255);
+        super("LivroIntro", 0, 0, x, y, 0);
 
         // Adiciona os sprites dentro do array para ser acessado em seus respectivos frames
         ArrayList<Bitmap> frames = new ArrayList<>();
-        for (int i = 0; i <= 5; i++){
+        for (int i = 0; i <= 4; i++){
             Bitmap frame = Assets.getBitmapFromMemoryFullscreen("intro_cena_b" + i);
             frames.add(frame);
         }
@@ -38,21 +39,23 @@ public class LivroIntro extends Entidade {
      * {@inheritDoc}
      */
     @Override
-    public void setState(EAState newState){
+    public void setState(CUTEstate newState){
         super.state = newState;
         switch(newState){
             case ESPERA:
-                currentSprite = animator.Frame(0);
                 break;
-            case ATAQUE:
-
+            case ABRINDO_LIVRO:
+                super.fadeIn(75);
                 break;
-            case DANO:
-                //super.fadeOut(100);
+            case SUMINDO_CENARIO:
+                super.fadeOut(50);
+                break;
+            case ZOOM:
 
                 break;
         }
     }
+
     /**
      * {@inheritDoc}
      */
@@ -62,32 +65,38 @@ public class LivroIntro extends Entidade {
         paint.setAlpha(super.currAlpha);
         switch(super.state){
             case ESPERA:
-                drawCenteredBitmap(currentSprite, canvas, paint, (int) super.x, (int) super.y);
                 break;
-            case ATAQUE:
+            case MOSTRANDO:
+                drawCenteredBitmap(animator.Frame(0), canvas, paint, (int) super.x, (int) super.y);
+                paint.setAlpha(oldAlpha);
+                break;
+            case ABRINDO_LIVRO:
                 drawCenteredBitmap(animator.sprite, canvas, paint, (int) super.x, (int) super.y);
                 // Destroy this entity if the animation is done
                 if (animator.isDoneAnimation()){
                     animator.pause();
                 }
                 animator.update(System.currentTimeMillis());
-            break;
-            case DANO:
-               /* drawCenteredBitmap(animator.Frame(4), canvas, paint, (int) super.x, (int) super.y);
+                break;
+            case SUMINDO_CENARIO:
+                drawCenteredBitmap(animator.Frame(4), canvas, paint, (int) super.x, (int) super.y);
                 paint.setAlpha(oldAlpha);
-                drawCenteredBitmap(animator.Frame(5), canvas, paint, (int) super.x, (int) super.y);
-                paint.setAlpha(255);*/
+                drawCenteredBitmap(Objects.requireNonNull(Assets.getBitmapFromMemoryFullscreen("intro_cena_b5")), canvas, paint, (int) super.x, (int) super.y);
+                paint.setAlpha(255);
+                break;
+            case ZOOM:
+                /*
+                FUNCIONA SO SE FOR O PRIMEIRO A SER PASSADO
+                PRECISO REVER PORQUE ESSE CÓDIGO ESTÁ PROBLEMATICO
 
-                   x+=0.01f;
-                   y+=0.01f;
-
-                //inicia a escala da matriz
-                Matrix scaleMatrix = new Matrix();
-                // Seta a escala do X e Y com o valos
-                scaleMatrix.setScale(x, y, animator.Frame(5).getWidth()/2, animator.Frame(4).getHeight()/ 1.5f);
+                zoomObject = Objects.requireNonNull(Assets.getBitmapFromMemoryFullscreen("intro_cena_b5"));
+                xScale+=0.01f;
+                yScale+=0.01f;
+                // Seta a escala do X e Y com o valor
+                scaleMatrix.setScale(xScale, yScale, zoomObject.getWidth() /2, zoomObject.getHeight() / 1.5f);
                 //desenhando já centralizado
-                canvas.drawBitmap(animator.Frame(5), scaleMatrix, paint);
-            break;
+                canvas.drawBitmap(zoomObject, scaleMatrix, paint);*/
+                break;
         }
     }
 
@@ -100,7 +109,7 @@ public class LivroIntro extends Entidade {
      * @param x Posição X do objeto
      * @param y Posição Y do objeto
      */
-    public void drawCenteredBitmap(Bitmap bitmap, Canvas canvas, Paint paint, int x, int y){
+    private void drawCenteredBitmap(Bitmap bitmap, Canvas canvas, Paint paint, int x, int y){
         x -= (bitmap.getWidth() / 2);
         y -= (bitmap.getHeight() / 2);
         canvas.drawBitmap(bitmap, x, y, paint);
